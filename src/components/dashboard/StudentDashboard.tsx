@@ -34,6 +34,7 @@ import AssignmentCard from './AssignmentCard';
 import AnnouncementCard from './AnnouncementCard';
 import IslamicModule from '../islamic/IslamicModule';
 import QuickAccessMenu from './QuickAccessMenu';
+import SchedulePage from './SchedulePage';
 
 interface StudentDashboardProps {
   onLogout: () => void;
@@ -181,6 +182,8 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
             <AnnouncementCard />
           </div>
         );
+      case 'schedule':
+        return <SchedulePage />;
       case 'menu':
         return (
           <Card>
