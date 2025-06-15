@@ -26,7 +26,7 @@ import {
   BookOpen,
   GraduationCap,
   ClipboardList,
-  PresentationChart,
+  Presentation,
   UserCheck,
   TestTube,
   Wallet,
