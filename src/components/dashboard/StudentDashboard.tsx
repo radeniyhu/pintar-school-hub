@@ -45,6 +45,15 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
 
   const menuItems = [
     { 
+      id: 'attendance', 
+      icon: UserCheck, 
+      label: 'Absensi', 
+      badge: null,
+      color: 'text-cyan-600',
+      bgColor: 'bg-cyan-50',
+      hoverColor: 'hover:bg-cyan-100'
+    },
+    { 
       id: 'schedule', 
       icon: Calendar, 
       label: 'Jadwal Pelajaran', 
@@ -72,15 +81,6 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       hoverColor: 'hover:bg-green-100'
     },
     { 
-      id: 'attendance', 
-      icon: UserCheck, 
-      label: 'Absensi', 
-      badge: null,
-      color: 'text-cyan-600',
-      bgColor: 'bg-cyan-50',
-      hoverColor: 'hover:bg-cyan-100'
-    },
-    { 
       id: 'cbt', 
       icon: Calculator, 
       label: 'CBT/Ujian', 
@@ -90,13 +90,13 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       hoverColor: 'hover:bg-red-100'
     },
     { 
-      id: 'payment', 
-      icon: Wallet, 
-      label: 'Pembayaran', 
-      badge: 1,
-      color: 'text-yellow-600',
-      bgColor: 'bg-yellow-50',
-      hoverColor: 'hover:bg-yellow-100'
+      id: 'library', 
+      icon: Library, 
+      label: 'Perpustakaan Digital', 
+      badge: null,
+      color: 'text-indigo-600',
+      bgColor: 'bg-indigo-50',
+      hoverColor: 'hover:bg-indigo-100'
     },
     { 
       id: 'islamic', 
@@ -108,13 +108,13 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       hoverColor: 'hover:bg-emerald-100'
     },
     { 
-      id: 'library', 
-      icon: Library, 
-      label: 'Perpustakaan Digital', 
-      badge: null,
-      color: 'text-indigo-600',
-      bgColor: 'bg-indigo-50',
-      hoverColor: 'hover:bg-indigo-100'
+      id: 'payment', 
+      icon: Wallet, 
+      label: 'Pembayaran', 
+      badge: 1,
+      color: 'text-yellow-600',
+      bgColor: 'bg-yellow-50',
+      hoverColor: 'hover:bg-yellow-100'
     },
   ];
 
