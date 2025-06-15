@@ -21,7 +21,7 @@ import {
   UserCheck,
   Calculator,
   Wallet,
-  Megaphone,
+  Library,
   Home,
   BookMarked,
   MessageCircle,
@@ -107,13 +107,13 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       hoverColor: 'hover:bg-emerald-100'
     },
     { 
-      id: 'announcements', 
-      icon: Megaphone, 
-      label: 'Pengumuman', 
-      badge: 5,
-      color: 'text-pink-600',
-      bgColor: 'bg-pink-50',
-      hoverColor: 'hover:bg-pink-100'
+      id: 'library', 
+      icon: Library, 
+      label: 'Perpustakaan Digital', 
+      badge: null,
+      color: 'text-indigo-600',
+      bgColor: 'bg-indigo-50',
+      hoverColor: 'hover:bg-indigo-100'
     },
   ];
 
@@ -247,6 +247,29 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
         );
       case 'islamic':
         return <IslamicModule />;
+      case 'library':
+        return (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Library className="w-6 h-6" />
+                Perpustakaan Digital
+              </CardTitle>
+              <CardDescription>
+                Akses koleksi buku dan materi pembelajaran digital
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-center py-12">
+                <div className="w-24 h-24 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                  <Library className="w-12 h-12 text-indigo-500" />
+                </div>
+                <p className="text-gray-500">Perpustakaan digital akan segera hadir...</p>
+                <p className="text-sm text-gray-400 mt-2">Akses ribuan buku dan materi pembelajaran</p>
+              </div>
+            </CardContent>
+          </Card>
+        );
       default:
         return (
           <Card>
