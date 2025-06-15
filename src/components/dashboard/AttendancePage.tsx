@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   UserCheck, 
   Clock, 
@@ -14,11 +15,14 @@ import {
   AlertCircle,
   BarChart3,
   TrendingUp,
-  Users
+  Users,
+  LogIn,
+  LogOut
 } from 'lucide-react';
 
 const AttendancePage = () => {
   const [isCheckedIn, setIsCheckedIn] = useState(false);
+  const [isCheckedOut, setIsCheckedOut] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString('id-ID'));
 
   // Update time every second
@@ -31,13 +35,11 @@ const AttendancePage = () => {
 
   const handleCheckIn = () => {
     setIsCheckedIn(true);
-    // Here you would typically send data to backend
     console.log('Check-in at:', new Date().toISOString());
   };
 
   const handleCheckOut = () => {
-    setIsCheckedIn(false);
-    // Here you would typically send data to backend
+    setIsCheckedOut(true);
     console.log('Check-out at:', new Date().toISOString());
   };
 
@@ -87,77 +89,173 @@ const AttendancePage = () => {
         </div>
       </div>
 
-      {/* Check-in/Check-out Card */}
-      <Card className="bg-gradient-to-br from-cyan-50 to-blue-50 border-cyan-200">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-cyan-800">
-            <Clock className="w-6 h-6" />
-            Absensi Hari Ini
-          </CardTitle>
-          <CardDescription>
-            Tanggal: {new Date().toLocaleDateString('id-ID', { 
-              weekday: 'long', 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 p-4 bg-white rounded-lg border">
-                <MapPin className="w-5 h-5 text-gray-500" />
-                <div>
-                  <p className="font-medium">Lokasi</p>
-                  <p className="text-sm text-gray-600">SMA Negeri 1 Jakarta</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-3 p-4 bg-white rounded-lg border">
-                <Calendar className="w-5 h-5 text-gray-500" />
-                <div>
-                  <p className="font-medium">Jam Masuk</p>
-                  <p className="text-sm text-gray-600">07:30 - 08:00 WIB</p>
-                </div>
-              </div>
-            </div>
+      {/* Tabs for Check-in and Check-out */}
+      <Tabs defaultValue="masuk" className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="masuk" className="flex items-center gap-2">
+            <LogIn className="w-4 h-4" />
+            Absen Masuk
+          </TabsTrigger>
+          <TabsTrigger value="pulang" className="flex items-center gap-2">
+            <LogOut className="w-4 h-4" />
+            Absen Pulang
+          </TabsTrigger>
+        </TabsList>
 
-            <div className="flex flex-col justify-center space-y-4">
-              {!isCheckedIn ? (
-                <Button 
-                  onClick={handleCheckIn}
-                  size="lg"
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-6"
-                >
-                  <CheckCircle className="w-6 h-6 mr-2" />
-                  Check In Sekarang
-                </Button>
-              ) : (
-                <div className="space-y-3">
-                  <div className="flex items-center justify-center gap-2 text-green-600 font-medium">
-                    <CheckCircle className="w-5 h-5" />
-                    Sudah Check In pada 07:45
+        {/* Absen Masuk Tab */}
+        <TabsContent value="masuk" className="space-y-6">
+          <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-green-800">
+                <LogIn className="w-6 h-6" />
+                Absen Masuk
+              </CardTitle>
+              <CardDescription>
+                Tanggal: {new Date().toLocaleDateString('id-ID', { 
+                  weekday: 'long', 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 p-4 bg-white rounded-lg border">
+                    <MapPin className="w-5 h-5 text-gray-500" />
+                    <div>
+                      <p className="font-medium">Lokasi</p>
+                      <p className="text-sm text-gray-600">SMA Negeri 1 Jakarta</p>
+                    </div>
                   </div>
-                  <Button 
-                    onClick={handleCheckOut}
-                    size="lg"
-                    variant="outline"
-                    className="w-full border-red-300 text-red-600 hover:bg-red-50 py-6"
-                  >
-                    <XCircle className="w-6 h-6 mr-2" />
-                    Check Out
-                  </Button>
+                  
+                  <div className="flex items-center gap-3 p-4 bg-white rounded-lg border">
+                    <Clock className="w-5 h-5 text-gray-500" />
+                    <div>
+                      <p className="font-medium">Jam Masuk</p>
+                      <p className="text-sm text-gray-600">07:30 - 08:00 WIB</p>
+                    </div>
+                  </div>
                 </div>
-              )}
-              
-              <p className="text-xs text-center text-gray-500">
-                * Pastikan Anda berada di area sekolah saat melakukan absensi
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+
+                <div className="flex flex-col justify-center space-y-4">
+                  {!isCheckedIn ? (
+                    <Button 
+                      onClick={handleCheckIn}
+                      size="lg"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white py-6"
+                    >
+                      <LogIn className="w-6 h-6 mr-2" />
+                      Absen Masuk Sekarang
+                    </Button>
+                  ) : (
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-center gap-2 text-green-600 font-medium">
+                        <CheckCircle className="w-5 h-5" />
+                        Sudah Absen Masuk pada 07:45
+                      </div>
+                      <div className="text-center p-4 bg-green-100 rounded-lg">
+                        <p className="text-green-800 font-medium">Absen Masuk Berhasil!</p>
+                        <p className="text-sm text-green-600">Selamat belajar hari ini</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  <p className="text-xs text-center text-gray-500">
+                    * Pastikan Anda berada di area sekolah saat melakukan absensi
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Absen Pulang Tab */}
+        <TabsContent value="pulang" className="space-y-6">
+          <Card className="bg-gradient-to-br from-orange-50 to-red-50 border-orange-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-orange-800">
+                <LogOut className="w-6 h-6" />
+                Absen Pulang
+              </CardTitle>
+              <CardDescription>
+                Tanggal: {new Date().toLocaleDateString('id-ID', { 
+                  weekday: 'long', 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 p-4 bg-white rounded-lg border">
+                    <MapPin className="w-5 h-5 text-gray-500" />
+                    <div>
+                      <p className="font-medium">Lokasi</p>
+                      <p className="text-sm text-gray-600">SMA Negeri 1 Jakarta</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 p-4 bg-white rounded-lg border">
+                    <Clock className="w-5 h-5 text-gray-500" />
+                    <div>
+                      <p className="font-medium">Jam Pulang</p>
+                      <p className="text-sm text-gray-600">15:00 - 15:30 WIB</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-center space-y-4">
+                  {!isCheckedIn ? (
+                    <div className="space-y-3">
+                      <div className="text-center p-4 bg-yellow-100 rounded-lg">
+                        <p className="text-yellow-800 font-medium">Belum Absen Masuk</p>
+                        <p className="text-sm text-yellow-600">Silakan absen masuk terlebih dahulu</p>
+                      </div>
+                      <Button 
+                        disabled
+                        size="lg"
+                        className="w-full py-6"
+                        variant="outline"
+                      >
+                        <LogOut className="w-6 h-6 mr-2" />
+                        Absen Pulang
+                      </Button>
+                    </div>
+                  ) : !isCheckedOut ? (
+                    <Button 
+                      onClick={handleCheckOut}
+                      size="lg"
+                      className="w-full bg-orange-600 hover:bg-orange-700 text-white py-6"
+                    >
+                      <LogOut className="w-6 h-6 mr-2" />
+                      Absen Pulang Sekarang
+                    </Button>
+                  ) : (
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-center gap-2 text-orange-600 font-medium">
+                        <CheckCircle className="w-5 h-5" />
+                        Sudah Absen Pulang pada 15:20
+                      </div>
+                      <div className="text-center p-4 bg-orange-100 rounded-lg">
+                        <p className="text-orange-800 font-medium">Absen Pulang Berhasil!</p>
+                        <p className="text-sm text-orange-600">Selamat istirahat, sampai jumpa besok</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  <p className="text-xs text-center text-gray-500">
+                    * Pastikan Anda berada di area sekolah saat melakukan absensi
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -269,8 +367,9 @@ const AttendancePage = () => {
               <h4 className="font-medium text-blue-800">Ketentuan Absensi:</h4>
               <ul className="space-y-1 text-blue-700">
                 <li>• Jam masuk: 07:30 - 08:00 WIB</li>
+                <li>• Jam pulang: 15:00 - 15:30 WIB</li>
                 <li>• Toleransi keterlambatan: 15 menit</li>
-                <li>• Wajib check-in di area sekolah</li>
+                <li>• Wajib absen di area sekolah</li>
               </ul>
             </div>
             <div className="space-y-2">
