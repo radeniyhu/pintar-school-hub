@@ -38,6 +38,7 @@ import ScheduleCard from './ScheduleCard';
 import AssignmentCard from './AssignmentCard';
 import AnnouncementCard from './AnnouncementCard';
 import IslamicModule from '../islamic/IslamicModule';
+import QuickAccessMenu from './QuickAccessMenu';
 
 interface StudentDashboardProps {
   onLogout: () => void;
@@ -137,6 +138,10 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
         return (
           <div className="space-y-6">
             <QuickStats />
+            <QuickAccessMenu 
+              menuItems={menuItems.filter(item => item.id !== 'dashboard')} 
+              onMenuClick={setActiveTab}
+            />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <ScheduleCard />
               <AssignmentCard />
