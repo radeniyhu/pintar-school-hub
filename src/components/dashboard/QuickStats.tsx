@@ -52,42 +52,47 @@ const QuickStats = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
           <Card key={index} className="hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-600 mb-1">
-                    {stat.title}
-                  </p>
-                  <p className="text-2xl font-bold text-gray-900 mb-2">
-                    {stat.value}
-                  </p>
-                  <div className="flex items-center gap-1">
-                    {stat.changeType === 'positive' && (
-                      <TrendingUp className="w-3 h-3 text-green-500" />
-                    )}
-                    <span className={`text-xs ${
-                      stat.changeType === 'positive' ? 'text-green-600' :
-                      stat.changeType === 'warning' ? 'text-orange-600' :
-                      'text-gray-500'
-                    }`}>
-                      {stat.change}
-                    </span>
+            <CardContent className="p-3 lg:p-6">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between">
+                {/* Mobile: Icon and value stacked */}
+                <div className="flex items-center justify-between lg:flex-col lg:items-start lg:flex-1 mb-2 lg:mb-0">
+                  <div className={`w-8 h-8 lg:w-12 lg:h-12 ${stat.bgColor} rounded-lg flex items-center justify-center lg:mb-3 order-2 lg:order-none lg:self-end`}>
+                    <Icon className={`w-4 h-4 lg:w-6 lg:h-6 ${stat.color}`} />
+                  </div>
+                  <div className="flex-1 lg:flex-none">
+                    <p className="text-xs lg:text-sm font-medium text-gray-600 mb-1">
+                      {stat.title}
+                    </p>
+                    <p className="text-lg lg:text-2xl font-bold text-gray-900">
+                      {stat.value}
+                    </p>
                   </div>
                 </div>
-                <div className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}>
-                  <Icon className={`w-6 h-6 ${stat.color}`} />
+                
+                {/* Change indicator - simplified for mobile */}
+                <div className="flex items-center gap-1 lg:mt-2">
+                  {stat.changeType === 'positive' && (
+                    <TrendingUp className="w-3 h-3 text-green-500" />
+                  )}
+                  <span className={`text-xs ${
+                    stat.changeType === 'positive' ? 'text-green-600' :
+                    stat.changeType === 'warning' ? 'text-orange-600' :
+                    'text-gray-500'
+                  }`}>
+                    {stat.change}
+                  </span>
                 </div>
               </div>
               
-              {/* Progress bar for attendance */}
+              {/* Progress bar for attendance - simplified for mobile */}
               {stat.title === 'Kehadiran' && (
-                <div className="mt-4">
-                  <Progress value={94} className="h-2" />
+                <div className="mt-3 lg:mt-4">
+                  <Progress value={94} className="h-1.5 lg:h-2" />
                 </div>
               )}
             </CardContent>

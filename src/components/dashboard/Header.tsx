@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
-import { Bell, Menu, User, Settings, LogOut, School } from 'lucide-react';
+import { Bell, User, Settings, LogOut, School } from 'lucide-react';
 
 interface HeaderProps {
   onMenuToggle: () => void;
@@ -22,26 +22,15 @@ const Header = ({ onMenuToggle, onLogout }: HeaderProps) => {
     <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
       <div className="flex items-center justify-between px-6 py-4">
         {/* Left side */}
-        <div className="flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onMenuToggle}
-            className="lg:hidden"
-          >
-            <Menu className="w-5 h-5" />
-          </Button>
-          
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
-              <School className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <h1 className="font-bold text-lg bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                PINTAR
-              </h1>
-              <p className="text-xs text-gray-500 hidden sm:block">Portal Pendidikan Terpadu</p>
-            </div>
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+            <School className="w-5 h-5 text-white" />
+          </div>
+          <div>
+            <h1 className="font-bold text-lg bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              PINTAR
+            </h1>
+            <p className="text-xs text-gray-500 hidden sm:block">Portal Pendidikan Terpadu</p>
           </div>
         </div>
 

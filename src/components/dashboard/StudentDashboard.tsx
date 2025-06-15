@@ -276,12 +276,12 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
       <Header 
-        onMenuToggle={() => {}} // No sidebar anymore
+        onMenuToggle={() => {}} // Keep for interface compatibility but no longer used
         onLogout={onLogout}
       />
 
       {/* Main Content */}
-      <main className="p-6">
+      <main className="p-4 lg:p-6">
         {renderContent()}
       </main>
 
