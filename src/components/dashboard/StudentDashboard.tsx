@@ -22,7 +22,15 @@ import {
   ChevronRight,
   TrendingUp,
   Target,
-  CheckCircle2
+  CheckCircle2,
+  GraduationCap,
+  ClipboardList,
+  UserCheck,
+  Calculator,
+  Wallet,
+  Megaphone,
+  Home,
+  BookMarked
 } from 'lucide-react';
 import Header from './Header';
 import QuickStats from './QuickStats';
@@ -40,15 +48,87 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menuItems = [
-    { id: 'dashboard', icon: BookOpen, label: 'Dashboard', badge: null },
-    { id: 'schedule', icon: Calendar, label: 'Jadwal Pelajaran', badge: null },
-    { id: 'assignments', icon: FileText, label: 'Tugas & Materi', badge: 3 },
-    { id: 'grades', icon: Award, label: 'Nilai & Rapor', badge: null },
-    { id: 'attendance', icon: Clock, label: 'Absensi', badge: null },
-    { id: 'cbt', icon: Target, label: 'CBT/Ujian', badge: 2 },
-    { id: 'payment', icon: CreditCard, label: 'Pembayaran', badge: 1 },
-    { id: 'islamic', icon: Compass, label: 'Modul Keagamaan', badge: null },
-    { id: 'announcements', icon: Bell, label: 'Pengumuman', badge: 5 },
+    { 
+      id: 'dashboard', 
+      icon: Home, 
+      label: 'Dashboard', 
+      badge: null,
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-50',
+      hoverColor: 'hover:bg-blue-100'
+    },
+    { 
+      id: 'schedule', 
+      icon: Calendar, 
+      label: 'Jadwal Pelajaran', 
+      badge: null,
+      color: 'text-purple-600',
+      bgColor: 'bg-purple-50',
+      hoverColor: 'hover:bg-purple-100'
+    },
+    { 
+      id: 'assignments', 
+      icon: BookMarked, 
+      label: 'Tugas & Materi', 
+      badge: 3,
+      color: 'text-orange-600',
+      bgColor: 'bg-orange-50',
+      hoverColor: 'hover:bg-orange-100'
+    },
+    { 
+      id: 'grades', 
+      icon: GraduationCap, 
+      label: 'Nilai & Rapor', 
+      badge: null,
+      color: 'text-green-600',
+      bgColor: 'bg-green-50',
+      hoverColor: 'hover:bg-green-100'
+    },
+    { 
+      id: 'attendance', 
+      icon: UserCheck, 
+      label: 'Absensi', 
+      badge: null,
+      color: 'text-cyan-600',
+      bgColor: 'bg-cyan-50',
+      hoverColor: 'hover:bg-cyan-100'
+    },
+    { 
+      id: 'cbt', 
+      icon: Calculator, 
+      label: 'CBT/Ujian', 
+      badge: 2,
+      color: 'text-red-600',
+      bgColor: 'bg-red-50',
+      hoverColor: 'hover:bg-red-100'
+    },
+    { 
+      id: 'payment', 
+      icon: Wallet, 
+      label: 'Pembayaran', 
+      badge: 1,
+      color: 'text-yellow-600',
+      bgColor: 'bg-yellow-50',
+      hoverColor: 'hover:bg-yellow-100'
+    },
+    { 
+      id: 'islamic', 
+      icon: Compass, 
+      label: 'Modul Keagamaan', 
+      badge: null,
+      color: 'text-emerald-600',
+      bgColor: 'bg-emerald-50',
+      hoverColor: 'hover:bg-emerald-100'
+    },
+    { 
+      id: 'announcements', 
+      icon: Megaphone, 
+      label: 'Pengumuman', 
+      badge: 5,
+      color: 'text-pink-600',
+      bgColor: 'bg-pink-50',
+      hoverColor: 'hover:bg-pink-100'
+    },
   ];
 
   const renderContent = () => {
@@ -102,23 +182,32 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       <div className="flex">
         {/* Sidebar */}
         <div className={`
-          fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out
+          fixed lg:static inset-y-0 left-0 z-50 w-72 bg-white shadow-xl transform transition-all duration-300 ease-in-out
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}>
           <div className="flex justify-between items-center p-4 border-b lg:hidden">
-            <h2 className="font-semibold">Menu</h2>
+            <h2 className="font-semibold text-gray-800">Menu Navigasi</h2>
             <Button 
               variant="ghost" 
               size="sm"
               onClick={() => setSidebarOpen(false)}
+              className="hover:bg-gray-100"
             >
               <X className="w-4 h-4" />
             </Button>
           </div>
           
-          <nav className="p-4 space-y-2">
+          <nav className="p-4 space-y-1">
+            <div className="mb-4">
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">
+                Menu Utama
+              </h3>
+            </div>
+            
             {menuItems.map((item) => {
               const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              
               return (
                 <button
                   key={item.id}
@@ -127,31 +216,67 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                     setSidebarOpen(false);
                   }}
                   className={`
-                    w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors
-                    ${activeTab === item.id 
-                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
-                      : 'text-gray-600 hover:bg-gray-50'
+                    group w-full flex items-center gap-4 px-4 py-3.5 rounded-xl text-left transition-all duration-200 ease-in-out
+                    ${isActive 
+                      ? `${item.bgColor} ${item.color} shadow-sm border-l-4 border-current scale-[1.02]` 
+                      : `text-gray-600 hover:text-gray-800 ${item.hoverColor} hover:shadow-sm hover:scale-[1.01]`
                     }
                   `}
                 >
-                  <Icon className="w-5 h-5" />
-                  <span className="flex-1">{item.label}</span>
-                  {item.badge && (
-                    <Badge variant="destructive" className="h-5 text-xs">
-                      {item.badge}
-                    </Badge>
-                  )}
-                  <ChevronRight className="w-4 h-4 opacity-50" />
+                  <div className={`
+                    flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-200
+                    ${isActive 
+                      ? `${item.color} bg-white shadow-sm` 
+                      : `text-gray-500 group-hover:${item.color} group-hover:bg-white group-hover:shadow-sm`
+                    }
+                  `}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  
+                  <div className="flex-1 min-w-0">
+                    <span className={`
+                      block text-sm font-medium truncate
+                      ${isActive ? 'font-semibold' : 'group-hover:font-medium'}
+                    `}>
+                      {item.label}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    {item.badge && (
+                      <Badge 
+                        variant="destructive" 
+                        className="h-5 text-xs font-medium px-2 animate-pulse"
+                      >
+                        {item.badge}
+                      </Badge>
+                    )}
+                    <ChevronRight className={`
+                      w-4 h-4 transition-all duration-200
+                      ${isActive 
+                        ? `${item.color} transform rotate-90` 
+                        : 'text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1'
+                      }
+                    `} />
+                  </div>
                 </button>
               );
             })}
           </nav>
+          
+          {/* Footer */}
+          <div className="absolute bottom-0 left-0 right-0 p-4 border-t bg-gray-50">
+            <div className="text-xs text-gray-500 text-center">
+              <p className="font-medium">PINTAR Education Portal</p>
+              <p>v2.0.1 - Modern Interface</p>
+            </div>
+          </div>
         </div>
 
         {/* Overlay for mobile */}
         {sidebarOpen && (
           <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden backdrop-blur-sm"
             onClick={() => setSidebarOpen(false)}
           />
         )}
