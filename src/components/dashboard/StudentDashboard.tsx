@@ -2,13 +2,10 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { 
   BookOpen, 
   Calendar, 
-  Clock, 
   Users, 
   Award, 
   Bell, 
@@ -18,11 +15,7 @@ import {
   Heart,
   LogOut,
   Menu,
-  X,
   ChevronRight,
-  TrendingUp,
-  Target,
-  CheckCircle2,
   GraduationCap,
   ClipboardList,
   UserCheck,
@@ -30,7 +23,9 @@ import {
   Wallet,
   Megaphone,
   Home,
-  BookMarked
+  BookMarked,
+  MessageCircle,
+  Newspaper
 } from 'lucide-react';
 import Header from './Header';
 import QuickStats from './QuickStats';
@@ -45,19 +40,9 @@ interface StudentDashboardProps {
 }
 
 const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('beranda');
 
   const menuItems = [
-    { 
-      id: 'dashboard', 
-      icon: Home, 
-      label: 'Dashboard', 
-      badge: null,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
-      hoverColor: 'hover:bg-blue-100'
-    },
     { 
       id: 'schedule', 
       icon: Calendar, 
@@ -132,14 +117,61 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
     },
   ];
 
+  const bottomNavItems = [
+    {
+      id: 'beranda',
+      icon: Home,
+      label: 'Beranda',
+      color: 'text-blue-600',
+      activeColor: 'bg-blue-600'
+    },
+    {
+      id: 'livechat',
+      icon: MessageCircle,
+      label: 'Live Chat',
+      color: 'text-green-600',
+      activeColor: 'bg-green-600'
+    },
+    {
+      id: 'menu',
+      icon: Menu,
+      label: 'Menu',
+      color: 'text-purple-600',
+      activeColor: 'bg-purple-600'
+    },
+    {
+      id: 'kalender',
+      icon: Calendar,
+      label: 'Kalender',
+      color: 'text-orange-600',
+      activeColor: 'bg-orange-600'
+    },
+    {
+      id: 'berita',
+      icon: Newspaper,
+      label: 'Berita',
+      color: 'text-red-600',
+      activeColor: 'bg-red-600'
+    }
+  ];
+
+  const handleBottomNavClick = (tabId: string) => {
+    if (tabId === 'livechat') {
+      // Redirect to WhatsApp admin
+      window.open('https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20butuh%20bantuan', '_blank');
+      return;
+    }
+    setActiveTab(tabId);
+  };
+
   const renderContent = () => {
     switch (activeTab) {
-      case 'dashboard':
+      case 'beranda':
         return (
           <div className="space-y-6">
             <QuickStats />
             <QuickAccessMenu 
-              menuItems={menuItems.filter(item => item.id !== 'dashboard')} 
+              menuItems={menuItems} 
               onMenuClick={setActiveTab}
             />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -148,6 +180,70 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
             </div>
             <AnnouncementCard />
           </div>
+        );
+      case 'menu':
+        return (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Menu className="w-6 h-6" />
+                Menu Aplikasi
+              </CardTitle>
+              <CardDescription>
+                Pilih menu untuk mengakses fitur yang Anda butuhkan
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <QuickAccessMenu 
+                menuItems={menuItems} 
+                onMenuClick={setActiveTab}
+              />
+            </CardContent>
+          </Card>
+        );
+      case 'kalender':
+        return (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Calendar className="w-6 h-6" />
+                Kalender Akademik
+              </CardTitle>
+              <CardDescription>
+                Lihat jadwal dan agenda akademik
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-center py-12">
+                <div className="w-24 h-24 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                  <Calendar className="w-12 h-12 text-orange-500" />
+                </div>
+                <p className="text-gray-500">Kalender akademik akan segera hadir...</p>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      case 'berita':
+        return (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Newspaper className="w-6 h-6" />
+                Berita & Artikel
+              </CardTitle>
+              <CardDescription>
+                Baca berita terbaru dan artikel pendidikan
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-center py-12">
+                <div className="w-24 h-24 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-4">
+                  <Newspaper className="w-12 h-12 text-red-500" />
+                </div>
+                <p className="text-gray-500">Berita dan artikel akan segera hadir...</p>
+              </div>
+            </CardContent>
+          </Card>
         );
       case 'islamic':
         return <IslamicModule />;
@@ -177,120 +273,52 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
       <Header 
-        onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
+        onMenuToggle={() => {}} // No sidebar anymore
         onLogout={onLogout}
       />
 
-      <div className="flex">
-        {/* Sidebar */}
-        <div className={`
-          fixed lg:static inset-y-0 left-0 z-50 w-72 bg-white shadow-xl transform transition-all duration-300 ease-in-out
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-        `}>
-          <div className="flex justify-between items-center p-4 border-b lg:hidden">
-            <h2 className="font-semibold text-gray-800">Menu Navigasi</h2>
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => setSidebarOpen(false)}
-              className="hover:bg-gray-100"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-          
-          <nav className="p-4 space-y-1">
-            <div className="mb-4">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">
-                Menu Utama
-              </h3>
-            </div>
+      {/* Main Content */}
+      <main className="p-6">
+        {renderContent()}
+      </main>
+
+      {/* Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
+        <div className="flex items-center justify-around py-2">
+          {bottomNavItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
             
-            {menuItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = activeTab === item.id;
-              
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    setActiveTab(item.id);
-                    setSidebarOpen(false);
-                  }}
-                  className={`
-                    group w-full flex items-center gap-4 px-4 py-3.5 rounded-xl text-left transition-all duration-200 ease-in-out
-                    ${isActive 
-                      ? `${item.bgColor} ${item.color} shadow-sm border-l-4 border-current scale-[1.02]` 
-                      : `text-gray-600 hover:text-gray-800 ${item.hoverColor} hover:shadow-sm hover:scale-[1.01]`
-                    }
-                  `}
-                >
-                  <div className={`
-                    flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-200
-                    ${isActive 
-                      ? `${item.color} bg-white shadow-sm` 
-                      : `text-gray-500 group-hover:${item.color} group-hover:bg-white group-hover:shadow-sm`
-                    }
-                  `}>
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  
-                  <div className="flex-1 min-w-0">
-                    <span className={`
-                      block text-sm font-medium truncate
-                      ${isActive ? 'font-semibold' : 'group-hover:font-medium'}
-                    `}>
-                      {item.label}
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-center gap-2">
-                    {item.badge && (
-                      <Badge 
-                        variant="destructive" 
-                        className="h-5 text-xs font-medium px-2 animate-pulse"
-                      >
-                        {item.badge}
-                      </Badge>
-                    )}
-                    <ChevronRight className={`
-                      w-4 h-4 transition-all duration-200
-                      ${isActive 
-                        ? `${item.color} transform rotate-90` 
-                        : 'text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1'
-                      }
-                    `} />
-                  </div>
-                </button>
-              );
-            })}
-          </nav>
-          
-          {/* Footer */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 border-t bg-gray-50">
-            <div className="text-xs text-gray-500 text-center">
-              <p className="font-medium">PINTAR Education Portal</p>
-              <p>v2.0.1 - Modern Interface</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Overlay for mobile */}
-        {sidebarOpen && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden backdrop-blur-sm"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
-
-        {/* Main Content */}
-        <div className="flex-1 lg:ml-0">
-          <main className="p-6">
-            {renderContent()}
-          </main>
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleBottomNavClick(item.id)}
+                className={`
+                  flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-all duration-200
+                  ${isActive ? 'scale-110' : 'hover:scale-105'}
+                `}
+              >
+                <div className={`
+                  p-2 rounded-full transition-all duration-200
+                  ${isActive 
+                    ? `${item.activeColor} text-white shadow-lg` 
+                    : `${item.color} hover:bg-gray-100`
+                  }
+                `}>
+                  <Icon className="w-5 h-5" />
+                </div>
+                <span className={`
+                  text-xs mt-1 font-medium transition-colors duration-200
+                  ${isActive ? item.color : 'text-gray-500'}
+                `}>
+                  {item.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>
