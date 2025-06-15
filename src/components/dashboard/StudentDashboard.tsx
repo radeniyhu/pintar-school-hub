@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -36,6 +35,7 @@ import IslamicModule from '../islamic/IslamicModule';
 import QuickAccessMenu from './QuickAccessMenu';
 import SchedulePage from './SchedulePage';
 import AttendancePage from './AttendancePage';
+import AssignmentsPage from './AssignmentsPage';
 
 interface StudentDashboardProps {
   onLogout: () => void;
@@ -187,6 +187,8 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
         return <AttendancePage />;
       case 'schedule':
         return <SchedulePage />;
+      case 'assignments':
+        return <AssignmentsPage />;
       case 'menu':
         return (
           <Card>
