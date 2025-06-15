@@ -1,10 +1,13 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FileText, Calendar, AlertCircle, CheckCircle2 } from 'lucide-react';
 
-const AssignmentCard = () => {
+interface AssignmentCardProps {
+  onNavigateToAssignments?: () => void;
+}
+
+const AssignmentCard = ({ onNavigateToAssignments }: AssignmentCardProps) => {
   const assignments = [
     {
       title: 'Laporan Praktikum Fisika',
@@ -68,6 +71,10 @@ const AssignmentCard = () => {
     }
   };
 
+  const handleAssignmentClick = (assignmentTitle: string) => {
+    alert(`Membuka detail tugas: ${assignmentTitle}`);
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -115,13 +122,19 @@ const AssignmentCard = () => {
                     size="sm" 
                     variant={assignment.priority === 'high' ? 'default' : 'outline'}
                     className="w-full"
+                    onClick={() => handleAssignmentClick(assignment.title)}
                   >
                     Kerjakan Tugas
                   </Button>
                 )}
                 
                 {assignment.status === 'completed' && (
-                  <Button size="sm" variant="outline" className="w-full">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => handleAssignmentClick(assignment.title)}
+                  >
                     Lihat Detail
                   </Button>
                 )}
@@ -131,7 +144,11 @@ const AssignmentCard = () => {
         </div>
         
         <div className="mt-4 pt-4 border-t">
-          <Button variant="ghost" className="w-full">
+          <Button 
+            variant="ghost" 
+            className="w-full"
+            onClick={onNavigateToAssignments}
+          >
             Lihat Semua Tugas
           </Button>
         </div>

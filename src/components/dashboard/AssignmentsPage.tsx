@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -25,6 +24,7 @@ import {
 const AssignmentsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSubject, setSelectedSubject] = useState('all');
+  const [selectedAssignment, setSelectedAssignment] = useState<any>(null);
 
   const assignments = [
     {
@@ -125,7 +125,7 @@ const AssignmentsPage = () => {
       title: 'Rumus Integral Lengkap',
       subject: 'Matematika',
       teacher: 'Pak Ahmad Wijaya',
-      description: 'Kumpulan rumus integral dasar hingga tingkat lanjut',
+      description: 'Kumpulan rumus integral dasar hingkat tingkat lanjut',
       uploadDate: '2024-06-08',
       type: 'material',
       fileType: 'PDF',
@@ -186,6 +186,37 @@ const AssignmentsPage = () => {
     const matchesSubject = selectedSubject === 'all' || material.subject === selectedSubject;
     return matchesSearch && matchesSubject;
   });
+
+  const handleSubmitAssignment = (assignment: any) => {
+    alert(`Mengumpulkan tugas: ${assignment.title}\nSilakan pilih file untuk dikumpulkan.`);
+    console.log('Submit assignment:', assignment);
+  };
+
+  const handleViewAssignmentDetail = (assignment: any) => {
+    setSelectedAssignment(assignment);
+    alert(`Detail Tugas: ${assignment.title}\n\nDeskripsi: ${assignment.description}\n\nDeadline: ${formatDueDate(assignment.dueDate, assignment.dueTime)}\n\nPoin: ${assignment.points}\n\nFormat: ${assignment.submissionFormat}`);
+  };
+
+  const handleDownloadAttachment = (fileName: string) => {
+    alert(`Mengunduh file: ${fileName}\nFile akan diunduh ke perangkat Anda.`);
+    console.log('Download attachment:', fileName);
+  };
+
+  const handleDownloadMaterial = (material: any) => {
+    const updatedMaterials = materials.map(m => 
+      m.id === material.id ? { ...m, downloads: m.downloads + 1 } : m
+    );
+    alert(`${material.type === 'video' ? 'Membuka video' : 'Mengunduh materi'}: ${material.title}\n\nUkuran file: ${material.fileSize}\n\nTotal unduhan: ${material.downloads + 1}`);
+    console.log('Download/view material:', material);
+  };
+
+  const handlePreviewMaterial = (material: any) => {
+    alert(`Preview: ${material.title}\n\nTipe: ${material.fileType}\n\nDeskripsi: ${material.description}\n\nDiupload: ${new Date(material.uploadDate).toLocaleDateString('id-ID')}`);
+  };
+
+  const handleViewSubmission = (assignment: any) => {
+    alert(`Melihat pengumpulan tugas: ${assignment.title}\n\nStatus: Sudah dikumpulkan\n\nTanggal pengumpulan: ${assignment.submittedDate ? new Date(assignment.submittedDate).toLocaleDateString('id-ID') : 'Belum dikumpulkan'}\n\nNilai: Sedang dalam penilaian`);
+  };
 
   return (
     <div className="space-y-6">
@@ -298,7 +329,16 @@ const AssignmentsPage = () => {
                           {assignment.attachments.length > 0 && (
                             <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
                               <Download className="w-3 h-3" />
-                              <span>Lampiran: {assignment.attachments.join(', ')}</span>
+                              <span>Lampiran: </span>
+                              {assignment.attachments.map((attachment, index) => (
+                                <button
+                                  key={index}
+                                  onClick={() => handleDownloadAttachment(attachment)}
+                                  className="text-blue-600 hover:text-blue-700 underline"
+                                >
+                                  {attachment}
+                                </button>
+                              ))}
                             </div>
                           )}
 
@@ -317,11 +357,17 @@ const AssignmentsPage = () => {
                             size="sm" 
                             variant={assignment.priority === 'high' ? 'default' : 'outline'}
                             className="flex items-center gap-2"
+                            onClick={() => handleSubmitAssignment(assignment)}
                           >
                             <Upload className="w-3 h-3" />
                             Kumpulkan Tugas
                           </Button>
-                          <Button size="sm" variant="ghost" className="flex items-center gap-2">
+                          <Button 
+                            size="sm" 
+                            variant="ghost" 
+                            className="flex items-center gap-2"
+                            onClick={() => handleViewAssignmentDetail(assignment)}
+                          >
                             <Eye className="w-3 h-3" />
                             Lihat Detail
                           </Button>
@@ -330,10 +376,18 @@ const AssignmentsPage = () => {
                       
                       {assignment.status === 'submitted' && (
                         <>
-                          <Button size="sm" variant="outline">
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => handleViewSubmission(assignment)}
+                          >
                             Lihat Pengumpulan
                           </Button>
-                          <Button size="sm" variant="ghost">
+                          <Button 
+                            size="sm" 
+                            variant="ghost"
+                            onClick={() => handleDownloadAttachment(assignment.attachments[0])}
+                          >
                             Download Lampiran
                           </Button>
                         </>
@@ -410,11 +464,20 @@ const AssignmentsPage = () => {
                   </div>
                   
                   <div className="flex gap-2">
-                    <Button size="sm" className="flex items-center gap-2">
+                    <Button 
+                      size="sm" 
+                      className="flex items-center gap-2"
+                      onClick={() => handleDownloadMaterial(material)}
+                    >
                       <Download className="w-3 h-3" />
                       {material.type === 'video' ? 'Tonton' : 'Download'}
                     </Button>
-                    <Button size="sm" variant="outline" className="flex items-center gap-2">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="flex items-center gap-2"
+                      onClick={() => handlePreviewMaterial(material)}
+                    >
                       <Eye className="w-3 h-3" />
                       Preview
                     </Button>

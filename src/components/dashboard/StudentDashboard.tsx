@@ -178,7 +178,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
             />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <ScheduleCard />
-              <AssignmentCard />
+              <AssignmentCard onNavigateToAssignments={() => setActiveTab('assignments')} />
             </div>
             <AnnouncementCard />
           </div>
