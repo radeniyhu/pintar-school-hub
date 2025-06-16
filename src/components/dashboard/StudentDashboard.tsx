@@ -36,6 +36,7 @@ import QuickAccessMenu from './QuickAccessMenu';
 import SchedulePage from './SchedulePage';
 import AttendancePage from './AttendancePage';
 import AssignmentsPage from './AssignmentsPage';
+import GradesPage from './GradesPage';
 
 interface StudentDashboardProps {
   onLogout: () => void;
@@ -189,6 +190,8 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
         return <SchedulePage />;
       case 'assignments':
         return <AssignmentsPage />;
+      case 'grades':
+        return <GradesPage />;
       case 'menu':
         return (
           <Card>
