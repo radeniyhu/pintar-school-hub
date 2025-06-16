@@ -1,99 +1,145 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar } from 'recharts';
-import { TrendingUp } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, PieChart, Pie, Cell } from 'recharts';
+import { Award, BookOpen } from 'lucide-react';
 
 const GradesChartCard = () => {
-  const progressData = [
-    { month: 'Jan', nilai: 82, target: 85 },
-    { month: 'Feb', nilai: 85, target: 85 },
-    { month: 'Mar', nilai: 83, target: 85 },
-    { month: 'Apr', nilai: 87, target: 85 },
-    { month: 'Mei', nilai: 89, target: 85 },
-    { month: 'Jun', nilai: 87, target: 85 }
+  const gradeDistributionData = [
+    { grade: 'A', count: 8, percentage: 40 },
+    { grade: 'B', count: 6, percentage: 30 },
+    { grade: 'C', count: 4, percentage: 20 },
+    { grade: 'D', count: 2, percentage: 10 }
   ];
 
-  const subjectData = [
-    { subject: 'Matematika', nilai: 95, kkm: 75 },
-    { subject: 'B. Indonesia', nilai: 88, kkm: 75 },
-    { subject: 'B. Inggris', nilai: 92, kkm: 75 },
-    { subject: 'IPA', nilai: 85, kkm: 75 },
-    { subject: 'IPS', nilai: 78, kkm: 75 },
-    { subject: 'PKn', nilai: 90, kkm: 75 }
+  const topSubjectsData = [
+    { subject: 'Matematika', nilai: 95 },
+    { subject: 'B. Inggris', nilai: 92 },
+    { subject: 'PKn', nilai: 90 },
+    { subject: 'B. Indonesia', nilai: 88 },
+    { subject: 'IPA', nilai: 85 }
   ];
+
+  const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
 
   const chartConfig = {
     nilai: {
       label: "Nilai",
       color: "#3b82f6",
     },
-    target: {
-      label: "Target",
-      color: "#ef4444",
-    },
-    kkm: {
-      label: "KKM",
-      color: "#f59e0b",
+    count: {
+      label: "Jumlah",
+      color: "#10b981",
     }
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      {/* Progress Chart */}
+    <div className="space-y-4 md:space-y-6">
+      {/* Grade Distribution Chart - Mobile First */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-blue-600" />
-            Perkembangan Nilai
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
+            <Award className="w-5 h-5 text-blue-600" />
+            Distribusi Nilai
           </CardTitle>
-          <CardDescription>
-            Tren nilai rata-rata selama 6 bulan terakhir
+          <CardDescription className="text-sm">
+            Sebaran nilai berdasarkan grade
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer config={chartConfig} className="h-[300px]">
-            <LineChart data={progressData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis domain={[70, 100]} />
-              <ChartTooltip content={<ChartTooltipContent />} />
-              <Line 
-                type="monotone" 
-                dataKey="nilai" 
-                stroke="#3b82f6" 
-                strokeWidth={3}
-                dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
-              />
-              <Line 
-                type="monotone" 
-                dataKey="target" 
-                stroke="#ef4444" 
-                strokeDasharray="5 5"
-                strokeWidth={2}
-              />
-            </LineChart>
-          </ChartContainer>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Bar Chart */}
+            <div className="order-2 lg:order-1">
+              <ChartContainer config={chartConfig} className="h-[250px] md:h-[300px]">
+                <BarChart data={gradeDistributionData} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis 
+                    dataKey="grade" 
+                    tick={{ fontSize: 12 }}
+                    tickLine={{ stroke: '#666' }}
+                  />
+                  <YAxis 
+                    tick={{ fontSize: 12 }}
+                    tickLine={{ stroke: '#666' }}
+                  />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Bar 
+                    dataKey="count" 
+                    fill="#3b82f6" 
+                    radius={[4, 4, 0, 0]}
+                    maxBarSize={60}
+                  />
+                </BarChart>
+              </ChartContainer>
+            </div>
+            
+            {/* Pie Chart */}
+            <div className="order-1 lg:order-2">
+              <ChartContainer config={chartConfig} className="h-[250px] md:h-[300px]">
+                <PieChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                  <Pie
+                    data={gradeDistributionData}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    innerRadius={40}
+                    paddingAngle={2}
+                    dataKey="count"
+                    label={({ grade, percentage }) => `${grade}: ${percentage}%`}
+                    labelLine={false}
+                    fontSize={12}
+                  >
+                    {gradeDistributionData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                </PieChart>
+              </ChartContainer>
+            </div>
+          </div>
         </CardContent>
       </Card>
 
-      {/* Subject Comparison Chart */}
+      {/* Top Subjects Chart - Mobile Responsive */}
       <Card>
-        <CardHeader>
-          <CardTitle>Perbandingan Nilai per Mata Pelajaran</CardTitle>
-          <CardDescription>
-            Nilai saat ini vs KKM yang ditetapkan
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
+            <BookOpen className="w-5 h-5 text-green-600" />
+            Top 5 Mata Pelajaran
+          </CardTitle>
+          <CardDescription className="text-sm">
+            Mata pelajaran dengan nilai tertinggi
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer config={chartConfig} className="h-[300px]">
-            <BarChart data={subjectData} layout="horizontal">
+          <ChartContainer config={chartConfig} className="h-[300px] md:h-[350px]">
+            <BarChart 
+              data={topSubjectsData} 
+              layout="horizontal"
+              margin={{ top: 20, right: 30, bottom: 20, left: 60 }}
+            >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis type="number" domain={[0, 100]} />
-              <YAxis dataKey="subject" type="category" width={80} />
+              <XAxis 
+                type="number" 
+                domain={[0, 100]} 
+                tick={{ fontSize: 12 }}
+                tickLine={{ stroke: '#666' }}
+              />
+              <YAxis 
+                dataKey="subject" 
+                type="category" 
+                width={50}
+                tick={{ fontSize: 10 }}
+                tickLine={{ stroke: '#666' }}
+              />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Bar dataKey="nilai" fill="#3b82f6" radius={[0, 4, 4, 0]} />
-              <Bar dataKey="kkm" fill="#f59e0b" radius={[0, 2, 2, 0]} />
+              <Bar 
+                dataKey="nilai" 
+                fill="#10b981" 
+                radius={[0, 4, 4, 0]}
+                maxBarSize={40}
+              />
             </BarChart>
           </ChartContainer>
         </CardContent>
