@@ -199,58 +199,58 @@ const GradesPage = () => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
-                <Target className="w-5 h-5 text-emerald-600" />
+          <CardContent className="p-3 lg:p-4">
+            <div className="flex items-center gap-2 lg:gap-3">
+              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
+                <Target className="w-4 h-4 lg:w-5 lg:h-5 text-emerald-600" />
               </div>
               <div>
-                <p className="text-sm text-gray-600">Rata-rata</p>
-                <p className="text-xl font-bold text-emerald-600">{calculateAverage()}</p>
+                <p className="text-xs lg:text-sm text-gray-600">Rata-rata</p>
+                <p className="text-lg lg:text-xl font-bold text-emerald-600">{calculateAverage()}</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-blue-600" />
+          <CardContent className="p-3 lg:p-4">
+            <div className="flex items-center gap-2 lg:gap-3">
+              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                <BookOpen className="w-4 h-4 lg:w-5 lg:h-5 text-blue-600" />
               </div>
               <div>
-                <p className="text-sm text-gray-600">Mata Pelajaran</p>
-                <p className="text-xl font-bold text-blue-600">{subjects.length}</p>
+                <p className="text-xs lg:text-sm text-gray-600">Mata Pelajaran</p>
+                <p className="text-lg lg:text-xl font-bold text-blue-600">{subjects.length}</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-green-600" />
+          <CardContent className="p-3 lg:p-4">
+            <div className="flex items-center gap-2 lg:gap-3">
+              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                <TrendingUp className="w-4 h-4 lg:w-5 lg:h-5 text-green-600" />
               </div>
               <div>
-                <p className="text-sm text-gray-600">Peringkat Kelas</p>
-                <p className="text-xl font-bold text-green-600">3</p>
+                <p className="text-xs lg:text-sm text-gray-600">Peringkat Kelas</p>
+                <p className="text-lg lg:text-xl font-bold text-green-600">3</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                <Award className="w-5 h-5 text-yellow-600" />
+          <CardContent className="p-3 lg:p-4">
+            <div className="flex items-center gap-2 lg:gap-3">
+              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                <Award className="w-4 h-4 lg:w-5 lg:h-5 text-yellow-600" />
               </div>
               <div>
-                <p className="text-sm text-gray-600">Prestasi</p>
-                <p className="text-xl font-bold text-yellow-600">{achievements.length}</p>
+                <p className="text-xs lg:text-sm text-gray-600">Prestasi</p>
+                <p className="text-lg lg:text-xl font-bold text-yellow-600">{achievements.length}</p>
               </div>
             </div>
           </CardContent>
@@ -258,16 +258,16 @@ const GradesPage = () => {
       </div>
 
       {/* Main Content */}
-      <Tabs defaultValue="grades" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="grades">Nilai Semester</TabsTrigger>
-          <TabsTrigger value="reports">Rapor</TabsTrigger>
-          <TabsTrigger value="progress">Progress</TabsTrigger>
-          <TabsTrigger value="achievements">Prestasi</TabsTrigger>
+      <Tabs defaultValue="grades" className="space-y-4 lg:space-y-6">
+        <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 gap-1">
+          <TabsTrigger value="grades" className="text-xs lg:text-sm">Nilai</TabsTrigger>
+          <TabsTrigger value="reports" className="text-xs lg:text-sm">Rapor</TabsTrigger>
+          <TabsTrigger value="progress" className="text-xs lg:text-sm">Progress</TabsTrigger>
+          <TabsTrigger value="achievements" className="text-xs lg:text-sm">Prestasi</TabsTrigger>
         </TabsList>
 
         {/* Grades Tab */}
-        <TabsContent value="grades" className="space-y-6">
+        <TabsContent value="grades" className="space-y-4 lg:space-y-6">
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
@@ -284,7 +284,52 @@ const GradesPage = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="overflow-x-auto">
+              {/* Mobile Card View */}
+              <div className="lg:hidden space-y-4">
+                {subjects.map((subject, index) => (
+                  <Card key={index} className="p-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="font-medium text-sm">{subject.name}</h3>
+                          <p className="text-xs text-gray-500">{subject.teacher}</p>
+                        </div>
+                        <div className="text-right">
+                          <span className={`px-2 py-1 rounded text-sm font-medium ${getGradeColor(subject.grades.final, subject.kkm)}`}>
+                            {subject.grades.final}
+                          </span>
+                          <div className="mt-1">
+                            <Badge className={`text-xs ${getPredicateColor(subject.predicate)}`}>
+                              {subject.predicate}
+                            </Badge>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-xs">
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Tugas:</span>
+                          <span className="font-medium">{Math.round(subject.grades.tugas.reduce((a, b) => a + b) / subject.grades.tugas.length)}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Ulangan:</span>
+                          <span className="font-medium">{Math.round(subject.grades.ulangan.reduce((a, b) => a + b) / subject.grades.ulangan.length)}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">UTS:</span>
+                          <span className="font-medium">{subject.grades.uts}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">UAS:</span>
+                          <span className="font-medium">{subject.grades.uas}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Desktop Table View */}
+              <div className="hidden lg:block overflow-x-auto">
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="border-b">
@@ -348,7 +393,7 @@ const GradesPage = () => {
         </TabsContent>
 
         {/* Reports Tab */}
-        <TabsContent value="reports" className="space-y-6">
+        <TabsContent value="reports" className="space-y-4 lg:space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>Rapor & Dokumen</CardTitle>
@@ -357,27 +402,27 @@ const GradesPage = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-3 lg:space-y-4">
                 {reports.map((report) => (
-                  <div key={report.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <FileText className="w-6 h-6 text-blue-600" />
+                  <div key={report.id} className="flex flex-col lg:flex-row lg:items-center justify-between p-3 lg:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 space-y-3 lg:space-y-0">
+                    <div className="flex items-center gap-3 lg:gap-4">
+                      <div className="w-10 h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <FileText className="w-5 h-5 lg:w-6 lg:h-6 text-blue-600" />
                       </div>
                       <div>
-                        <h3 className="font-medium">{report.title}</h3>
-                        <p className="text-sm text-gray-600">{report.period}</p>
-                        <div className="flex items-center gap-4 mt-1">
+                        <h3 className="font-medium text-sm lg:text-base">{report.title}</h3>
+                        <p className="text-xs lg:text-sm text-gray-600">{report.period}</p>
+                        <div className="flex flex-wrap items-center gap-2 lg:gap-4 mt-1">
                           <Badge variant={report.status === 'final' ? 'default' : 'secondary'}>
                             {report.status === 'final' ? 'Final' : 'Progress'}
                           </Badge>
-                          <span className="text-sm text-gray-500">
+                          <span className="text-xs lg:text-sm text-gray-500">
                             Rata-rata: {report.average}
                           </span>
                         </div>
                       </div>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 w-full lg:w-auto justify-end">
                       <Button variant="ghost" size="sm">
                         <Eye className="w-4 h-4 mr-2" />
                         Lihat
@@ -395,7 +440,7 @@ const GradesPage = () => {
         </TabsContent>
 
         {/* Progress Tab */}
-        <TabsContent value="progress" className="space-y-6">
+        <TabsContent value="progress" className="space-y-4 lg:space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
@@ -404,11 +449,11 @@ const GradesPage = () => {
                   Progress Akademik
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-3 lg:space-y-4">
                 {subjects.slice(0, 4).map((subject, index) => (
                   <div key={index} className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span>{subject.name}</span>
+                    <div className="flex justify-between text-xs lg:text-sm">
+                      <span className="truncate mr-2">{subject.name}</span>
                       <span className="font-medium">{subject.grades.final}%</span>
                     </div>
                     <Progress value={subject.grades.final} className="h-2" />
@@ -422,14 +467,14 @@ const GradesPage = () => {
                 <CardTitle>Target vs Pencapaian</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-6">
+                <div className="space-y-4 lg:space-y-6">
                   <div className="text-center">
-                    <div className="w-24 h-24 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-4">
-                      <span className="text-2xl font-bold text-emerald-600">{calculateAverage()}</span>
+                    <div className="w-20 h-20 lg:w-24 lg:h-24 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-3 lg:mb-4">
+                      <span className="text-xl lg:text-2xl font-bold text-emerald-600">{calculateAverage()}</span>
                     </div>
-                    <p className="text-sm text-gray-600">Rata-rata Saat Ini</p>
-                    <p className="text-lg font-semibold">Target: 85.0</p>
-                    <Badge className="mt-2 bg-green-100 text-green-800">
+                    <p className="text-xs lg:text-sm text-gray-600">Rata-rata Saat Ini</p>
+                    <p className="text-base lg:text-lg font-semibold">Target: 85.0</p>
+                    <Badge className="mt-1 lg:mt-2 bg-green-100 text-green-800 text-xs">
                       Target Tercapai!
                     </Badge>
                   </div>
@@ -440,7 +485,7 @@ const GradesPage = () => {
         </TabsContent>
 
         {/* Achievements Tab */}
-        <TabsContent value="achievements" className="space-y-6">
+        <TabsContent value="achievements" className="space-y-4 lg:space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -452,19 +497,19 @@ const GradesPage = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-4">
                 {achievements.map((achievement, index) => {
                   const Icon = achievement.icon;
                   return (
-                    <div key={index} className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                          <Icon className="w-5 h-5 text-yellow-600" />
+                    <div key={index} className="p-3 lg:p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                      <div className="flex items-start gap-2 lg:gap-3">
+                        <div className="w-8 h-8 lg:w-10 lg:h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                          <Icon className="w-4 h-4 lg:w-5 lg:h-5 text-yellow-600" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-medium text-sm">{achievement.title}</h3>
+                          <h3 className="font-medium text-xs lg:text-sm">{achievement.title}</h3>
                           <p className="text-xs text-gray-600 mt-1">{achievement.category}</p>
-                          <div className="flex items-center justify-between mt-2">
+                          <div className="flex items-center justify-between mt-1 lg:mt-2">
                             <Badge variant="outline" className="text-xs">
                               {achievement.level}
                             </Badge>
