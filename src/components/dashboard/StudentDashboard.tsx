@@ -173,17 +173,9 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
           <div className="space-y-6">
             {/* Welcome Message */}
             <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6 shadow-sm">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">AF</span>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Selamat datang,</p>
-                  <h2 className="text-lg font-semibold text-gray-900">Ahmad Fauzi</h2>
-                  <Badge variant="outline" className="text-xs mt-1">
-                    Kelas XI IPA 2
-                  </Badge>
-                </div>
+              <div className="text-left">
+                <p className="text-sm text-gray-500">Selamat datang,</p>
+                <h2 className="text-lg font-semibold text-gray-900">Ahmad Fauzi</h2>
               </div>
             </div>
             
