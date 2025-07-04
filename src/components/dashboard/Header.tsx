@@ -34,20 +34,6 @@ const Header = ({ onMenuToggle, onLogout }: HeaderProps) => {
           </div>
         </div>
 
-        {/* Center - Welcome Message */}
-        <div className="flex-1 text-center mx-4">
-          <div className="hidden md:block">
-            <p className="text-sm text-gray-600">Selamat datang,</p>
-            <p className="font-semibold text-emerald-700">Ahmad Fauzi</p>
-            <Badge variant="outline" className="text-xs">Kelas XI IPA 2</Badge>
-          </div>
-          <div className="md:hidden">
-            <p className="text-xs text-gray-600">Selamat datang,</p>
-            <p className="font-medium text-emerald-700 text-sm">Ahmad Fauzi</p>
-            <Badge variant="outline" className="text-xs">XI IPA 2</Badge>
-          </div>
-        </div>
-
         {/* Right side */}
         <div className="flex items-center gap-3">
           {/* Notifications */}

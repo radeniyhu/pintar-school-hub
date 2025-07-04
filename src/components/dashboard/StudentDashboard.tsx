@@ -171,6 +171,17 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       case 'beranda':
         return (
           <div className="space-y-6">
+            {/* Welcome Message */}
+            <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 rounded-lg p-4 mb-6">
+              <div className="text-center">
+                <p className="text-sm text-gray-600 mb-1">Selamat datang,</p>
+                <h2 className="text-xl font-bold text-emerald-700 mb-2">Ahmad Fauzi</h2>
+                <Badge variant="outline" className="bg-white border-emerald-200 text-emerald-700">
+                  Kelas XI IPA 2
+                </Badge>
+              </div>
+            </div>
+            
             <QuickStats />
             <QuickAccessMenu 
               menuItems={menuItems} 
