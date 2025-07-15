@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CBTExamInterface from './CBTExamInterface';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -32,6 +33,7 @@ import {
 
 const CBTPage = () => {
   const [selectedExam, setSelectedExam] = useState<string | null>(null);
+  const [activeExamId, setActiveExamId] = useState<string | null>(null);
 
   // Mock data for active exams
   const activeExams = [
@@ -268,9 +270,18 @@ const CBTPage = () => {
   );
 
   const startExam = (examId: string) => {
-    alert(`Memulai ujian: ${examId}\n\nAnda akan diarahkan ke halaman ujian...`);
+    setActiveExamId(examId);
     setSelectedExam(null);
   };
+
+  const exitExam = () => {
+    setActiveExamId(null);
+  };
+
+  // If exam is active, show exam interface
+  if (activeExamId) {
+    return <CBTExamInterface examId={activeExamId} onExit={exitExam} />;
+  }
 
   return (
     <div className="space-y-6">
