@@ -37,6 +37,7 @@ import AttendancePage from './AttendancePage';
 import AssignmentsPage from './AssignmentsPage';
 import GradesPage from './GradesPage';
 import CBTPage from './CBTPage';
+import DigitalLibraryPage from './DigitalLibraryPage';
 
 interface StudentDashboardProps {
   onLogout: () => void;
@@ -268,28 +269,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       case 'islamic':
         return <IslamicModule />;
       case 'library':
-        return (
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Library className="w-6 h-6" />
-                Perpustakaan Digital
-              </CardTitle>
-              <CardDescription>
-                Akses koleksi buku dan materi pembelajaran digital
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center py-12">
-                <div className="w-24 h-24 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                  <Library className="w-12 h-12 text-indigo-500" />
-                </div>
-                <p className="text-gray-500">Perpustakaan digital akan segera hadir...</p>
-                <p className="text-sm text-gray-400 mt-2">Akses ribuan buku dan materi pembelajaran</p>
-              </div>
-            </CardContent>
-          </Card>
-        );
+        return <DigitalLibraryPage />;
       default:
         return (
           <Card>
