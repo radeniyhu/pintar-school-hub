@@ -27,7 +27,6 @@ import {
   Newspaper
 } from 'lucide-react';
 import Header from './Header';
-import QuickStats from './QuickStats';
 import ScheduleCard from './ScheduleCard';
 import AssignmentCard from './AssignmentCard';
 import AnnouncementCard from './AnnouncementCard';
@@ -181,8 +180,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
               </div>
             </div>
             
-            <QuickStats />
-            <QuickAccessMenu 
+            <QuickAccessMenu
               menuItems={menuItems} 
               onMenuClick={setActiveTab}
             />
