@@ -175,9 +175,31 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
           <div className="space-y-6">
             {/* Welcome Message */}
             <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6 shadow-sm">
-              <div className="text-left">
-                <p className="text-sm text-gray-500">Selamat datang,</p>
-                <h2 className="text-lg font-semibold text-gray-900">Ahmad Fauzi</h2>
+              <div className="flex items-center justify-between">
+                <div className="text-left">
+                  <p className="text-sm text-gray-500">Selamat datang,</p>
+                  <h2 className="text-lg font-semibold text-gray-900">Ahmad Fauzi</h2>
+                </div>
+                <div className="flex items-center gap-3">
+                  {/* Balance Display */}
+                  <div className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-lg border border-green-200">
+                    <Wallet className="w-5 h-5 text-green-600" />
+                    <div className="text-right">
+                      <p className="text-xs text-green-600 font-medium">Saldo</p>
+                      <p className="text-sm font-bold text-green-700">Rp 250.000</p>
+                    </div>
+                  </div>
+                  {/* Topup Button */}
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="flex items-center gap-2 border-blue-200 text-blue-600 hover:bg-blue-50"
+                    onClick={() => setActiveTab('payment')}
+                  >
+                    <CreditCard className="w-4 h-4" />
+                    Top Up
+                  </Button>
+                </div>
               </div>
             </div>
             
