@@ -180,6 +180,16 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                 <h2 className="text-lg font-semibold text-gray-900">Ahmad Fauzi</h2>
               </div>
             </div>
+            
+            <QuickAccessMenu
+              menuItems={menuItems} 
+              onMenuClick={setActiveTab}
+            />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ScheduleCard />
+              <AssignmentCard onNavigateToAssignments={() => setActiveTab('assignments')} />
+            </div>
+            <AnnouncementCard />
           </div>
         );
       case 'grades':
