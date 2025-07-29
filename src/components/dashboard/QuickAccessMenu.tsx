@@ -22,10 +22,6 @@ const QuickAccessMenu = ({ menuItems, onMenuClick }: QuickAccessMenuProps) => {
   return (
     <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-gray-50">
       <CardHeader className="pb-4">
-        <CardTitle className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent flex items-center gap-2">
-          ⚡ Menu Akses Cepat
-        </CardTitle>
-        <p className="text-sm text-gray-600">Pilih menu untuk mengakses fitur yang Anda butuhkan</p>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
