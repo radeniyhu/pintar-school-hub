@@ -185,11 +185,6 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
               menuItems={menuItems} 
               onMenuClick={setActiveTab}
             />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <ScheduleCard />
-              <AssignmentCard onNavigateToAssignments={() => setActiveTab('assignments')} />
-            </div>
-            <AnnouncementCard />
           </div>
         );
       case 'grades':
