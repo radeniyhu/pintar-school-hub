@@ -1,19 +1,15 @@
 import { useState } from 'react';
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
-  BookOpen, 
+  Menu,
+  FileText,
+  Compass,
   Calendar, 
   Users, 
   Award, 
   Bell, 
   CreditCard, 
-  FileText,
-  Compass,
-  Heart,
-  LogOut,
-  Menu,
   ChevronRight,
   GraduationCap,
   ClipboardList,
@@ -21,15 +17,12 @@ import {
   Calculator,
   Wallet,
   Library,
-  Home,
   BookMarked,
-  MessageCircle,
-  Newspaper
+  Newspaper,
+  Home,
+  MessageCircle
 } from 'lucide-react';
 import Header from './Header';
-import ScheduleCard from './ScheduleCard';
-import AssignmentCard from './AssignmentCard';
-import AnnouncementCard from './AnnouncementCard';
 import IslamicModule from '../islamic/IslamicModule';
 import QuickAccessMenu from './QuickAccessMenu';
 import SchedulePage from './SchedulePage';
@@ -38,6 +31,8 @@ import AssignmentsPage from './AssignmentsPage';
 import GradesPage from './GradesPage';
 import CBTPage from './CBTPage';
 import DigitalLibraryPage from './DigitalLibraryPage';
+import WelcomeSection from './WelcomeSection';
+import BottomNavigation from './BottomNavigation';
 
 interface StudentDashboardProps {
   onLogout: () => void;
@@ -121,87 +116,17 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
     },
   ];
 
-  const bottomNavItems = [
-    {
-      id: 'beranda',
-      icon: Home,
-      label: 'Beranda',
-      color: 'text-blue-600',
-      activeColor: 'bg-blue-600'
-    },
-    {
-      id: 'livechat',
-      icon: MessageCircle,
-      label: 'Live Chat',
-      color: 'text-green-600',
-      activeColor: 'bg-green-600'
-    },
-    {
-      id: 'menu',
-      icon: Menu,
-      label: 'Menu',
-      color: 'text-purple-600',
-      activeColor: 'bg-purple-600'
-    },
-    {
-      id: 'kalender',
-      icon: Calendar,
-      label: 'Kalender',
-      color: 'text-orange-600',
-      activeColor: 'bg-orange-600'
-    },
-    {
-      id: 'berita',
-      icon: Newspaper,
-      label: 'Berita',
-      color: 'text-red-600',
-      activeColor: 'bg-red-600'
-    }
-  ];
-
-  const handleBottomNavClick = (tabId: string) => {
-    if (tabId === 'livechat') {
-      // Redirect to WhatsApp admin
-      window.open('https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20butuh%20bantuan', '_blank');
-      return;
-    }
-    setActiveTab(tabId);
-  };
 
   const renderContent = () => {
     switch (activeTab) {
       case 'beranda':
         return (
           <div className="space-y-6">
-            {/* Welcome Message */}
-            <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6 shadow-sm">
-              <div className="flex items-center justify-between">
-                <div className="text-left">
-                  <p className="text-sm text-gray-500">Selamat datang,</p>
-                  <h2 className="text-lg font-semibold text-gray-900">Ahmad Fauzi</h2>
-                </div>
-                <div className="flex items-center gap-3">
-                  {/* Balance Display */}
-                  <div className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-lg border border-green-200">
-                    <Wallet className="w-5 h-5 text-green-600" />
-                    <div className="text-right">
-                      <p className="text-xs text-green-600 font-medium">Saldo</p>
-                      <p className="text-sm font-bold text-green-700">Rp 250.000</p>
-                    </div>
-                  </div>
-                  {/* Topup Button */}
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="flex items-center gap-2 border-blue-200 text-blue-600 hover:bg-blue-50"
-                    onClick={() => setActiveTab('payment')}
-                  >
-                    <CreditCard className="w-4 h-4" />
-                    Top Up
-                  </Button>
-                </div>
-              </div>
-            </div>
+            <WelcomeSection 
+              userName="Ahmad Fauzi"
+              balance={250000}
+              onTopUpClick={() => setActiveTab('payment')}
+            />
             
             <QuickAccessMenu
               menuItems={menuItems} 
@@ -326,41 +251,10 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       </main>
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
-        <div className="flex items-center justify-around py-2">
-          {bottomNavItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.id;
-            
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleBottomNavClick(item.id)}
-                className={`
-                  flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-all duration-200
-                  ${isActive ? 'scale-110' : 'hover:scale-105'}
-                `}
-              >
-                <div className={`
-                  p-2 rounded-full transition-all duration-200
-                  ${isActive 
-                    ? `${item.activeColor} text-white shadow-lg` 
-                    : `${item.color} hover:bg-gray-100`
-                  }
-                `}>
-                  <Icon className="w-5 h-5" />
-                </div>
-                <span className={`
-                  text-xs mt-1 font-medium transition-colors duration-200
-                  ${isActive ? item.color : 'text-gray-500'}
-                `}>
-                  {item.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
+      <BottomNavigation 
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
     </div>
   );
 };
