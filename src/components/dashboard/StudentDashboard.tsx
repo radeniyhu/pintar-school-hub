@@ -210,72 +210,23 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
         return <CBTPage />;
       case 'menu':
         return (
-          <div className="space-y-6">
-            {/* QR Scanner Header */}
-            <Card>
-              <CardHeader className="text-center">
-                <CardTitle className="flex items-center justify-center gap-2 text-purple-600">
-                  <QrCode className="w-6 h-6" />
-                  Scan QR Pembayaran
-                </CardTitle>
-                <CardDescription>
-                  Arahkan kamera ke QR code untuk melakukan pembayaran
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            {/* QR Scanner Area */}
-            <Card>
-              <CardContent className="p-6">
-                <div className="relative bg-gray-100 rounded-lg p-8 text-center">
-                  <div className="w-64 h-64 mx-auto bg-white rounded-lg border-2 border-dashed border-purple-300 flex flex-col items-center justify-center">
-                    <QrCode className="w-16 h-16 text-purple-400 mb-4" />
-                    <p className="text-purple-600 font-medium">Area Scan QR Code</p>
-                    <p className="text-gray-500 text-sm mt-2">Posisikan QR code di dalam frame</p>
-                  </div>
-                  
-                  {/* Corner markers */}
-                  <div className="absolute top-8 left-8 w-6 h-6 border-t-2 border-l-2 border-purple-500 rounded-tl-lg"></div>
-                  <div className="absolute top-8 right-8 w-6 h-6 border-t-2 border-r-2 border-purple-500 rounded-tr-lg"></div>
-                  <div className="absolute bottom-8 left-8 w-6 h-6 border-b-2 border-l-2 border-purple-500 rounded-bl-lg"></div>
-                  <div className="absolute bottom-8 right-8 w-6 h-6 border-b-2 border-r-2 border-purple-500 rounded-br-lg"></div>
+          <Card>
+            <CardContent className="p-6">
+              <div className="relative bg-gray-100 rounded-lg p-8 text-center">
+                <div className="w-64 h-64 mx-auto bg-white rounded-lg border-2 border-dashed border-purple-300 flex flex-col items-center justify-center">
+                  <QrCode className="w-16 h-16 text-purple-400 mb-4" />
+                  <p className="text-purple-600 font-medium">Area Scan QR Code</p>
+                  <p className="text-gray-500 text-sm mt-2">Posisikan QR code di dalam frame</p>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Quick Action Buttons */}
-            <div className="grid grid-cols-2 gap-4">
-              <Button variant="outline" className="h-12 flex items-center justify-center gap-2">
-                <FileText className="w-5 h-5" />
-                Riwayat Transaksi
-              </Button>
-              <Button variant="outline" className="h-12 flex items-center justify-center gap-2">
-                <Wallet className="w-5 h-5" />
-                Saldo E-Wallet
-              </Button>
-            </div>
-
-            {/* Payment Instructions */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sm">Cara Melakukan Pembayaran:</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-sm font-medium">1</div>
-                  <p className="text-sm text-gray-600">Arahkan kamera ke QR code pembayaran</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-sm font-medium">2</div>
-                  <p className="text-sm text-gray-600">Pastikan QR code berada di dalam frame</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-sm font-medium">3</div>
-                  <p className="text-sm text-gray-600">Konfirmasi detail pembayaran yang muncul</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                
+                {/* Corner markers */}
+                <div className="absolute top-8 left-8 w-6 h-6 border-t-2 border-l-2 border-purple-500 rounded-tl-lg"></div>
+                <div className="absolute top-8 right-8 w-6 h-6 border-t-2 border-r-2 border-purple-500 rounded-tr-lg"></div>
+                <div className="absolute bottom-8 left-8 w-6 h-6 border-b-2 border-l-2 border-purple-500 rounded-bl-lg"></div>
+                <div className="absolute bottom-8 right-8 w-6 h-6 border-b-2 border-r-2 border-purple-500 rounded-br-lg"></div>
+              </div>
+            </CardContent>
+          </Card>
         );
       case 'kalender':
         return (
