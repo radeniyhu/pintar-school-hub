@@ -175,34 +175,42 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
           <div className="space-y-6">
             {/* Welcome Message */}
             <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6 shadow-sm">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-                {/* Welcome Text */}
-                <div className="text-left">
+              {/* Welcome Text */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                  <Users className="w-6 h-6 text-blue-600" />
+                </div>
+                <div className="flex-1">
                   <p className="text-sm text-gray-500">Selamat datang,</p>
                   <h2 className="text-lg font-semibold text-gray-900">Ahmad Fauzi</h2>
                 </div>
-                
+              </div>
+              
+              {/* Balance and Top-up Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* Balance Display */}
-                <div className="flex items-center justify-center gap-2 bg-green-50 px-3 py-2 rounded-lg border border-green-200">
-                  <Wallet className="w-5 h-5 text-green-600" />
-                  <div className="text-center md:text-right">
-                    <p className="text-xs text-green-600 font-medium">Saldo</p>
+                <div className="flex items-center gap-3 bg-gradient-to-r from-green-50 to-emerald-50 px-4 py-3 rounded-lg border border-green-200">
+                  <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                    <Wallet className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs text-green-600 font-medium">Saldo Anda</p>
                     <p className="text-sm font-bold text-green-700">Rp 250.000</p>
                   </div>
                 </div>
                 
                 {/* Topup Button */}
-                <div className="flex justify-center md:justify-end">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="flex items-center gap-2 border-blue-200 text-blue-600 hover:bg-blue-50 w-full md:w-auto"
-                    onClick={() => setActiveTab('payment')}
-                  >
-                    <CreditCard className="w-4 h-4" />
-                    Top Up
-                  </Button>
-                </div>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="flex items-center justify-center gap-2 border-blue-200 text-blue-600 hover:bg-blue-50 h-full py-3"
+                  onClick={() => setActiveTab('payment')}
+                >
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                    <CreditCard className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <span className="font-medium">Top Up Saldo</span>
+                </Button>
               </div>
             </div>
             
