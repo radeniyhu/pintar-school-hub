@@ -25,7 +25,8 @@ import {
   BookMarked,
   MessageCircle,
   Newspaper,
-  Plus
+  Plus,
+  QrCode
 } from 'lucide-react';
 import Header from './Header';
 import ScheduleCard from './ScheduleCard';
@@ -139,8 +140,8 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
     },
     {
       id: 'menu',
-      icon: Menu,
-      label: 'Menu',
+      icon: QrCode,
+      label: 'QRIS',
       color: 'text-purple-600',
       activeColor: 'bg-purple-600'
     },
