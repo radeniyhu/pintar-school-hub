@@ -24,7 +24,8 @@ import {
   Home,
   BookMarked,
   MessageCircle,
-  Newspaper
+  Newspaper,
+  Plus
 } from 'lucide-react';
 import Header from './Header';
 import ScheduleCard from './ScheduleCard';
@@ -181,7 +182,10 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                   <h2 className="text-lg font-semibold text-gray-900">Ahmad Fauzi</h2>
                 </div>
                 <div className="flex flex-col items-center gap-1 text-green-600">
-                  <Wallet className="w-5 h-5" />
+                  <div className="flex items-center gap-2">
+                    <Wallet className="w-5 h-5" />
+                    <Plus className="w-4 h-4 bg-green-600 text-white rounded-full p-0.5 hover:bg-green-700 cursor-pointer transition-colors" />
+                  </div>
                   <span className="text-sm font-medium">Rp. 1.500.738</span>
                 </div>
               </div>
