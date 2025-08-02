@@ -180,9 +180,9 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                   <p className="text-sm text-gray-500">Selamat datang,</p>
                   <h2 className="text-lg font-semibold text-gray-900">Ahmad Fauzi</h2>
                 </div>
-                <div className="flex items-center gap-2 text-green-600">
+                <div className="flex flex-col items-center gap-1 text-green-600">
                   <Wallet className="w-5 h-5" />
-                  <span className="text-sm font-medium">Saldo</span>
+                  <span className="text-sm font-medium">Rp. 1.500.738</span>
                 </div>
               </div>
             </div>
