@@ -175,25 +175,28 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
           <div className="space-y-6">
             {/* Welcome Message */}
             <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6 shadow-sm">
-              <div className="flex items-center justify-between">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                {/* Welcome Text */}
                 <div className="text-left">
                   <p className="text-sm text-gray-500">Selamat datang,</p>
                   <h2 className="text-lg font-semibold text-gray-900">Ahmad Fauzi</h2>
                 </div>
-                <div className="flex items-center gap-3">
-                  {/* Balance Display */}
-                  <div className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-lg border border-green-200">
-                    <Wallet className="w-5 h-5 text-green-600" />
-                    <div className="text-right">
-                      <p className="text-xs text-green-600 font-medium">Saldo</p>
-                      <p className="text-sm font-bold text-green-700">Rp 250.000</p>
-                    </div>
+                
+                {/* Balance Display */}
+                <div className="flex items-center justify-center gap-2 bg-green-50 px-3 py-2 rounded-lg border border-green-200">
+                  <Wallet className="w-5 h-5 text-green-600" />
+                  <div className="text-center md:text-right">
+                    <p className="text-xs text-green-600 font-medium">Saldo</p>
+                    <p className="text-sm font-bold text-green-700">Rp 250.000</p>
                   </div>
-                  {/* Topup Button */}
+                </div>
+                
+                {/* Topup Button */}
+                <div className="flex justify-center md:justify-end">
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className="flex items-center gap-2 border-blue-200 text-blue-600 hover:bg-blue-50"
+                    className="flex items-center gap-2 border-blue-200 text-blue-600 hover:bg-blue-50 w-full md:w-auto"
                     onClick={() => setActiveTab('payment')}
                   >
                     <CreditCard className="w-4 h-4" />
