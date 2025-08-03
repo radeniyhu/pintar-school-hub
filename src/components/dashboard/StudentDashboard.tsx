@@ -48,6 +48,7 @@ interface StudentDashboardProps {
 
 const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
   const [activeTab, setActiveTab] = useState('beranda');
+  const [subTab, setSubTab] = useState('pendidikan'); // For managing sub-tabs within beranda
 
   const menuItems = [
     { 
@@ -193,10 +194,177 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
               </div>
             </div>
             
-            <QuickAccessMenu
-              menuItems={menuItems} 
-              onMenuClick={setActiveTab}
-            />
+            {/* Main Tab Navigation */}
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+              <div className="flex border-b border-gray-200">
+                <button
+                  onClick={() => setSubTab('pendidikan')}
+                  className={`flex-1 px-6 py-4 text-center font-medium transition-colors ${
+                    subTab === 'pendidikan'
+                      ? 'bg-blue-50 text-blue-600 border-b-2 border-blue-600'
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <GraduationCap className="w-5 h-5" />
+                    Pendidikan
+                  </div>
+                </button>
+                <button
+                  onClick={() => setSubTab('pembayaran')}
+                  className={`flex-1 px-6 py-4 text-center font-medium transition-colors ${
+                    subTab === 'pembayaran'
+                      ? 'bg-green-50 text-green-600 border-b-2 border-green-600'
+                      : 'text-gray-600 hover:text-green-600 hover:bg-gray-50'
+                  }`}
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <CreditCard className="w-5 h-5" />
+                    Pembayaran
+                  </div>
+                </button>
+              </div>
+              
+               <div className="p-6">
+                {subTab === 'pendidikan' && (
+                  <QuickAccessMenu
+                    menuItems={menuItems} 
+                    onMenuClick={setActiveTab}
+                  />
+                )}
+                
+                {subTab === 'pembayaran' && (
+                  <div className="space-y-6">
+                    {/* Saldo Aktif */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          <Wallet className="w-5 h-5 text-green-600" />
+                          Saldo & Riwayat Pembayaran
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-4 mb-4">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="text-sm text-gray-600">Total Saldo</p>
+                              <p className="text-2xl font-bold text-green-600">Rp. 1.500.738</p>
+                            </div>
+                            <Button className="bg-green-600 hover:bg-green-700">
+                              <Plus className="w-4 h-4 mr-2" />
+                              Top Up
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Tagihan Pending */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          <Bell className="w-5 h-5 text-orange-600" />
+                          Tagihan Tertunda
+                          <Badge variant="destructive">2</Badge>
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-200">
+                            <div>
+                              <p className="font-medium text-gray-900">SPP Bulan Juni 2024</p>
+                              <p className="text-sm text-gray-600">Jatuh tempo: 15 Juni 2024</p>
+                            </div>
+                            <div className="text-right">
+                              <p className="font-bold text-red-600">Rp. 450.000</p>
+                              <Button size="sm" className="mt-1">Bayar</Button>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <div>
+                              <p className="font-medium text-gray-900">Biaya Kegiatan Ekstrakurikuler</p>
+                              <p className="text-sm text-gray-600">Jatuh tempo: 20 Juni 2024</p>
+                            </div>
+                            <div className="text-right">
+                              <p className="font-bold text-orange-600">Rp. 150.000</p>
+                              <Button size="sm" className="mt-1">Bayar</Button>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Menu Pembayaran */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Menu Pembayaran</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-2 gap-4">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <GraduationCap className="w-6 h-6 text-blue-600" />
+                            <span className="text-sm">SPP</span>
+                          </Button>
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <BookOpen className="w-6 h-6 text-green-600" />
+                            <span className="text-sm">Buku & Seragam</span>
+                          </Button>
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <Users className="w-6 h-6 text-purple-600" />
+                            <span className="text-sm">Kegiatan</span>
+                          </Button>
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <Calendar className="w-6 h-6 text-orange-600" />
+                            <span className="text-sm">Ujian</span>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Riwayat Transaksi */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          <FileText className="w-5 h-5 text-gray-600" />
+                          Riwayat Transaksi
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between p-3 border rounded-lg">
+                            <div>
+                              <p className="font-medium">SPP Bulan Mei 2024</p>
+                              <p className="text-sm text-gray-600">12 Mei 2024 • 14:30</p>
+                            </div>
+                            <div className="text-right">
+                              <p className="font-medium text-green-600">- Rp. 450.000</p>
+                              <Badge variant="outline" className="text-green-600 border-green-600">
+                                Berhasil
+                              </Badge>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between p-3 border rounded-lg">
+                            <div>
+                              <p className="font-medium">Top Up Saldo</p>
+                              <p className="text-sm text-gray-600">10 Mei 2024 • 09:15</p>
+                            </div>
+                            <div className="text-right">
+                              <p className="font-medium text-blue-600">+ Rp. 1.000.000</p>
+                              <Badge variant="outline" className="text-blue-600 border-blue-600">
+                                Berhasil
+                              </Badge>
+                            </div>
+                          </div>
+                        </div>
+                        <Button variant="ghost" className="w-full mt-4">
+                          Lihat Semua Riwayat
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         );
       case 'grades':
