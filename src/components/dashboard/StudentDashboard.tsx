@@ -199,28 +199,28 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
               <div className="flex border-b border-gray-200">
                 <button
                   onClick={() => setSubTab('pendidikan')}
-                  className={`flex-1 px-6 py-4 text-center font-medium transition-colors ${
+                  className={`flex-1 px-4 py-3 text-center font-medium transition-colors ${
                     subTab === 'pendidikan'
                       ? 'bg-blue-50 text-blue-600 border-b-2 border-blue-600'
                       : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
                   }`}
                 >
-                  <div className="flex items-center justify-center gap-2">
-                    <GraduationCap className="w-5 h-5" />
-                    Pendidikan
+                  <div className="flex items-center justify-center gap-1.5">
+                    <GraduationCap className="w-4 h-4" />
+                    <span className="text-sm">Pendidikan</span>
                   </div>
                 </button>
                 <button
                   onClick={() => setSubTab('pembayaran')}
-                  className={`flex-1 px-6 py-4 text-center font-medium transition-colors ${
+                  className={`flex-1 px-4 py-3 text-center font-medium transition-colors ${
                     subTab === 'pembayaran'
                       ? 'bg-green-50 text-green-600 border-b-2 border-green-600'
                       : 'text-gray-600 hover:text-green-600 hover:bg-gray-50'
                   }`}
                 >
-                  <div className="flex items-center justify-center gap-2">
-                    <CreditCard className="w-5 h-5" />
-                    Pembayaran
+                  <div className="flex items-center justify-center gap-1.5">
+                    <CreditCard className="w-4 h-4" />
+                    <span className="text-sm">Pembayaran</span>
                   </div>
                 </button>
               </div>
