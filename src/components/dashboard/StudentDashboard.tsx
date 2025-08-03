@@ -40,6 +40,7 @@ import AssignmentsPage from './AssignmentsPage';
 import GradesPage from './GradesPage';
 import CBTPage from './CBTPage';
 import DigitalLibraryPage from './DigitalLibraryPage';
+import NewsPage from './NewsPage';
 
 interface StudentDashboardProps {
   onLogout: () => void;
@@ -251,27 +252,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
           </Card>
         );
       case 'berita':
-        return (
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Newspaper className="w-6 h-6" />
-                Berita & Artikel
-              </CardTitle>
-              <CardDescription>
-                Baca berita terbaru dan artikel pendidikan
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center py-12">
-                <div className="w-24 h-24 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-4">
-                  <Newspaper className="w-12 h-12 text-red-500" />
-                </div>
-                <p className="text-gray-500">Berita dan artikel akan segera hadir...</p>
-              </div>
-            </CardContent>
-          </Card>
-        );
+        return <NewsPage />;
       case 'islamic':
         return <IslamicModule />;
       case 'library':
