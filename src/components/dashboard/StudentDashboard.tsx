@@ -235,30 +235,6 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                 
                 {subTab === 'pembayaran' && (
                   <div className="space-y-6">
-                    {/* Saldo Aktif */}
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                          <Wallet className="w-5 h-5 text-green-600" />
-                          Saldo & Riwayat Pembayaran
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-4 mb-4">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <p className="text-sm text-gray-600">Total Saldo</p>
-                              <p className="text-2xl font-bold text-green-600">Rp. 1.500.738</p>
-                            </div>
-                            <Button className="bg-green-600 hover:bg-green-700">
-                              <Plus className="w-4 h-4 mr-2" />
-                              Top Up
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-
                     {/* Tagihan Pending */}
                     <Card>
                       <CardHeader>
@@ -316,6 +292,86 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                           <Button variant="outline" className="h-20 flex flex-col gap-2">
                             <Calendar className="w-6 h-6 text-orange-600" />
                             <span className="text-sm">Ujian</span>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Menu PPOB */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          <CreditCard className="w-5 h-5 text-blue-600" />
+                          PPOB (Payment Point Online Bank)
+                        </CardTitle>
+                        <CardDescription>
+                          Bayar berbagai tagihan dan kebutuhan sehari-hari
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-2 gap-4">
+                          {/* Listrik */}
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center">
+                              <span className="text-yellow-600 text-xs font-bold">⚡</span>
+                            </div>
+                            <span className="text-sm">Listrik PLN</span>
+                          </Button>
+                          
+                          {/* Air PDAM */}
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                              <span className="text-blue-600 text-xs font-bold">💧</span>
+                            </div>
+                            <span className="text-sm">Air PDAM</span>
+                          </Button>
+                          
+                          {/* Pulsa */}
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                              <span className="text-green-600 text-xs font-bold">📱</span>
+                            </div>
+                            <span className="text-sm">Pulsa & Data</span>
+                          </Button>
+                          
+                          {/* Internet */}
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center">
+                              <span className="text-purple-600 text-xs font-bold">🌐</span>
+                            </div>
+                            <span className="text-sm">Internet</span>
+                          </Button>
+                          
+                          {/* TV Kabel */}
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
+                              <span className="text-red-600 text-xs font-bold">📺</span>
+                            </div>
+                            <span className="text-sm">TV Kabel</span>
+                          </Button>
+                          
+                          {/* BPJS */}
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center">
+                              <span className="text-teal-600 text-xs font-bold">🏥</span>
+                            </div>
+                            <span className="text-sm">BPJS</span>
+                          </Button>
+                          
+                          {/* Asuransi */}
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center">
+                              <span className="text-indigo-600 text-xs font-bold">🛡️</span>
+                            </div>
+                            <span className="text-sm">Asuransi</span>
+                          </Button>
+                          
+                          {/* Multifinance */}
+                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                            <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
+                              <span className="text-pink-600 text-xs font-bold">🏦</span>
+                            </div>
+                            <span className="text-sm">Multifinance</span>
                           </Button>
                         </div>
                       </CardContent>
