@@ -115,10 +115,10 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       hoverColor: 'hover:bg-emerald-100'
     },
     { 
-      id: 'payment', 
-      icon: Wallet, 
-      label: 'Pembayaran', 
-      badge: 1,
+      id: 'academic-calendar', 
+      icon: Calendar, 
+      label: 'Kalender Akademik', 
+      badge: null,
       color: 'text-yellow-600',
       bgColor: 'bg-yellow-50',
       hoverColor: 'hover:bg-yellow-100'
@@ -148,18 +148,18 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       activeColor: 'bg-purple-600'
     },
     {
-      id: 'kalender',
-      icon: Calendar,
-      label: 'Kalender',
-      color: 'text-orange-600',
-      activeColor: 'bg-orange-600'
-    },
-    {
       id: 'berita',
       icon: Newspaper,
       label: 'Berita',
       color: 'text-red-600',
       activeColor: 'bg-red-600'
+    },
+    {
+      id: 'profil',
+      icon: Users,
+      label: 'Profil',
+      color: 'text-orange-600',
+      activeColor: 'bg-orange-600'
     }
   ];
 
@@ -453,7 +453,29 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
             </CardContent>
           </Card>
         );
-      case 'kalender':
+      case 'profil':
+        return (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Users className="w-6 h-6" />
+                Profil Siswa
+              </CardTitle>
+              <CardDescription>
+                Kelola informasi profil dan data pribadi
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-center py-12">
+                <div className="w-24 h-24 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                  <Users className="w-12 h-12 text-orange-500" />
+                </div>
+                <p className="text-gray-500">Halaman profil akan segera hadir...</p>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      case 'academic-calendar':
         return (
           <Card>
             <CardHeader>
@@ -467,8 +489,8 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
             </CardHeader>
             <CardContent>
               <div className="text-center py-12">
-                <div className="w-24 h-24 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                  <Calendar className="w-12 h-12 text-orange-500" />
+                <div className="w-24 h-24 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                  <Calendar className="w-12 h-12 text-yellow-500" />
                 </div>
                 <p className="text-gray-500">Kalender akademik akan segera hadir...</p>
               </div>
