@@ -51,7 +51,7 @@ const Header = ({ onMenuToggle, onLogout }: HeaderProps) => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="sm">
-                <User className="w-5 h-5" />
+                Menu
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="end" forceMount>
