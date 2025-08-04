@@ -50,8 +50,11 @@ const Header = ({ onMenuToggle, onLogout }: HeaderProps) => {
           {/* User Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm">
-                Menu
+              <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                <Avatar className="h-10 w-10">
+                  <AvatarImage src="/placeholder-avatar.jpg" alt="Ahmad Fauzi" />
+                  <AvatarFallback className="bg-emerald-100 text-emerald-700">AF</AvatarFallback>
+                </Avatar>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="end" forceMount>
