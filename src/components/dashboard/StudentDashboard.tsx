@@ -26,7 +26,8 @@ import {
   MessageCircle,
   Newspaper,
   Plus,
-  QrCode
+  QrCode,
+  Camera
 } from 'lucide-react';
 import Header from './Header';
 import ScheduleCard from './ScheduleCard';
@@ -455,25 +456,200 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
         );
       case 'profil':
         return (
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Users className="w-6 h-6" />
-                Profil Siswa
-              </CardTitle>
-              <CardDescription>
-                Kelola informasi profil dan data pribadi
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center py-12">
-                <div className="w-24 h-24 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                  <Users className="w-12 h-12 text-orange-500" />
+          <div className="space-y-6">
+            {/* Profile Header */}
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex flex-col sm:flex-row items-center gap-6">
+                  <div className="relative">
+                    <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                      AF
+                    </div>
+                    <button className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-full shadow-lg border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                      <Camera className="w-4 h-4 text-gray-600" />
+                    </button>
+                  </div>
+                  <div className="text-center sm:text-left flex-1">
+                    <h1 className="text-2xl font-bold text-gray-900">Ahmad Fauzi</h1>
+                    <p className="text-gray-600">Kelas XI IPA 2</p>
+                    <p className="text-sm text-gray-500">NIS: 2023110001</p>
+                    <div className="flex flex-wrap gap-2 mt-3 justify-center sm:justify-start">
+                      <Badge variant="outline" className="text-green-600 border-green-600">
+                        Status Aktif
+                      </Badge>
+                      <Badge variant="outline" className="text-blue-600 border-blue-600">
+                        Siswa Reguler
+                      </Badge>
+                    </div>
+                  </div>
+                  <Button className="flex items-center gap-2">
+                    <FileText className="w-4 h-4" />
+                    Edit Profil
+                  </Button>
                 </div>
-                <p className="text-gray-500">Halaman profil akan segera hadir...</p>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+
+            {/* Personal Information */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="w-5 h-5 text-blue-600" />
+                  Informasi Pribadi
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">Nama Lengkap</label>
+                      <p className="text-gray-900 font-medium">Ahmad Fauzi bin Abdullah</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">Tempat, Tanggal Lahir</label>
+                      <p className="text-gray-900">Jakarta, 15 Agustus 2007</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">Jenis Kelamin</label>
+                      <p className="text-gray-900">Laki-laki</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">Agama</label>
+                      <p className="text-gray-900">Islam</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">Alamat</label>
+                      <p className="text-gray-900">Jl. Pendidikan No. 123, Kelurahan Ilmu, Kecamatan Pengetahuan, Jakarta Selatan 12345</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">No. Telepon</label>
+                      <p className="text-gray-900">+62 812-3456-7890</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">Email</label>
+                      <p className="text-gray-900">ahmad.fauzi@student.sekolah.sch.id</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Academic Information */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <GraduationCap className="w-5 h-5 text-green-600" />
+                  Informasi Akademik
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div>
+                    <label className="text-sm font-medium text-gray-500">NIS</label>
+                    <p className="text-gray-900 font-medium">2023110001</p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-500">NISN</label>
+                    <p className="text-gray-900 font-medium">0123456789</p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-500">Kelas</label>
+                    <p className="text-gray-900 font-medium">XI IPA 2</p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-500">Tahun Masuk</label>
+                    <p className="text-gray-900">2023</p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-500">Semester</label>
+                    <p className="text-gray-900">Genap 2023/2024</p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-500">Status</label>
+                    <Badge variant="outline" className="text-green-600 border-green-600">
+                      Aktif
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Parent Information */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Heart className="w-5 h-5 text-red-600" />
+                  Informasi Orang Tua/Wali
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-gray-900 border-b pb-2">Ayah</h4>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">Nama</label>
+                      <p className="text-gray-900">Abdullah bin Ahmad</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">Pekerjaan</label>
+                      <p className="text-gray-900">Wiraswasta</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">No. Telepon</label>
+                      <p className="text-gray-900">+62 811-2233-4455</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-gray-900 border-b pb-2">Ibu</h4>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">Nama</label>
+                      <p className="text-gray-900">Siti Fatimah</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">Pekerjaan</label>
+                      <p className="text-gray-900">Ibu Rumah Tangga</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-500">No. Telepon</label>
+                      <p className="text-gray-900">+62 812-3344-5566</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Quick Actions */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Award className="w-5 h-5 text-purple-600" />
+                  Aksi Cepat
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-blue-50 hover:border-blue-300">
+                    <FileText className="w-6 h-6 text-blue-600" />
+                    <span className="text-sm">Edit Profil</span>
+                  </Button>
+                  <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-green-50 hover:border-green-300">
+                    <Users className="w-6 h-6 text-green-600" />
+                    <span className="text-sm">Ubah Password</span>
+                  </Button>
+                  <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-purple-50 hover:border-purple-300">
+                    <Bell className="w-6 h-6 text-purple-600" />
+                    <span className="text-sm">Pengaturan</span>
+                  </Button>
+                  <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-orange-50 hover:border-orange-300">
+                    <LogOut className="w-6 h-6 text-orange-600" />
+                    <span className="text-sm">Keluar</span>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         );
       case 'academic-calendar':
         return (
