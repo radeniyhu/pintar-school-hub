@@ -13,11 +13,24 @@ import { Badge } from "@/components/ui/badge";
 import { Bell, User, Settings, LogOut, School } from 'lucide-react';
 
 interface HeaderProps {
-  onMenuToggle: () => void;
+  userRole?: string;
+  userName?: string;
+  userEmail?: string;
   onLogout: () => void;
 }
 
-const Header = ({ onMenuToggle, onLogout }: HeaderProps) => {
+const Header = ({ userRole = "siswa", userName = "Ahmad Fauzi", userEmail = "ahmad@student.com", onLogout }: HeaderProps) => {
+  
+  const getRoleDisplay = () => {
+    switch (userRole) {
+      case 'owner': return { name: 'Super Admin', class: 'Platform Owner', avatar: 'SA' };
+      case 'admin': return { name: 'Admin', class: 'Platform Admin', avatar: 'AD' };
+      case 'client': return { name: 'Admin Sekolah', class: 'School Admin', avatar: 'AS' };
+      default: return { name: userName, class: 'XI IPA 2', avatar: userName.split(' ').map(n => n[0]).join('') };
+    }
+  };
+  
+  const roleInfo = getRoleDisplay();
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
       <div className="flex items-center justify-between px-6 py-4">
@@ -52,20 +65,20 @@ const Header = ({ onMenuToggle, onLogout }: HeaderProps) => {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                 <Avatar className="h-10 w-10">
-                  <AvatarImage src="/placeholder-avatar.jpg" alt="Ahmad Fauzi" />
-                  <AvatarFallback className="bg-emerald-100 text-emerald-700">AF</AvatarFallback>
+                  <AvatarImage src="/placeholder-avatar.jpg" alt={roleInfo.name} />
+                  <AvatarFallback className="bg-emerald-100 text-emerald-700">{roleInfo.avatar}</AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="end" forceMount>
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">Ahmad Fauzi</p>
+                  <p className="text-sm font-medium leading-none">{roleInfo.name}</p>
                   <p className="text-xs leading-none text-muted-foreground">
-                    NISN: 1234567890
+                    {userEmail}
                   </p>
                   <Badge variant="outline" className="w-fit text-xs mt-1">
-                    XI IPA 2
+                    {roleInfo.class}
                   </Badge>
                 </div>
               </DropdownMenuLabel>

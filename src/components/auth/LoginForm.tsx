@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { BookOpen, GraduationCap, School } from 'lucide-react';
 
 interface LoginFormProps {
-  onLogin: (role: 'siswa' | 'guru' | 'admin' | 'wali') => void;
+  onLogin: (role: 'siswa' | 'guru' | 'admin' | 'wali' | 'owner' | 'client') => void;
 }
 
 const LoginForm = ({ onLogin }: LoginFormProps) => {
@@ -17,7 +17,16 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Simple demo login - in real app this would validate with backend
-    onLogin('siswa');
+    // Demo login logic based on NISN
+    if (nisn === 'owner123') {
+      onLogin('owner');
+    } else if (nisn === 'admin123') {
+      onLogin('admin');
+    } else if (nisn === 'client123') {
+      onLogin('client');
+    } else {
+      onLogin('siswa');
+    }
   };
 
   return (
@@ -78,9 +87,13 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
 
             {/* Demo Accounts */}
             <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-              <p className="text-sm text-gray-600 mb-2">Demo Account:</p>
-              <p className="text-xs text-gray-500">NISN: 1234567890</p>
-              <p className="text-xs text-gray-500">Password: siswa123</p>
+              <p className="text-sm text-gray-600 mb-2">Demo Accounts:</p>
+              <div className="space-y-1">
+                <p className="text-xs text-gray-500"><strong>Owner:</strong> owner123 / password</p>
+                <p className="text-xs text-gray-500"><strong>Admin:</strong> admin123 / password</p>
+                <p className="text-xs text-gray-500"><strong>Client:</strong> client123 / password</p>
+                <p className="text-xs text-gray-500"><strong>Siswa:</strong> 1234567890 / siswa123</p>
+              </div>
             </div>
           </CardContent>
         </Card>
