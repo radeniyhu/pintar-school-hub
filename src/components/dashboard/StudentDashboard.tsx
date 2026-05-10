@@ -480,7 +480,12 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                     <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                       AF
                     </div>
-                    <button className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-full shadow-lg border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <button
+                      type="button"
+                      onClick={() => toast.info("Ubah foto profil", { description: "Pilih foto baru dari perangkat Anda." })}
+                      aria-label="Ubah foto profil"
+                      className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-full shadow-lg border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                    >
                       <Camera className="w-4 h-4 text-gray-600" />
                     </button>
                   </div>
