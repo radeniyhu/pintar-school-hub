@@ -161,11 +161,11 @@ const StudentCard = () => {
 
       {/* Action buttons */}
       <div className="grid grid-cols-2 gap-2">
-        <Button variant="outline" className="w-full">
+        <Button variant="outline" className="w-full" onClick={handleDownload}>
           <Download className="w-4 h-4 mr-2" />
           Unduh Kartu
         </Button>
-        <Button className="w-full">
+        <Button className="w-full" onClick={handleShare}>
           <Share2 className="w-4 h-4 mr-2" />
           Bagikan
         </Button>
