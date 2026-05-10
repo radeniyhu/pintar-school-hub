@@ -440,19 +440,31 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       case 'menu':
         return (
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-6 space-y-4">
+              <div className="text-center">
+                <h2 className="text-lg font-semibold text-gray-900">Scan QRIS</h2>
+                <p className="text-sm text-gray-500">Bayar cepat dengan memindai kode QRIS</p>
+              </div>
               <div className="relative bg-gray-100 rounded-lg p-8 text-center">
                 <div className="w-64 h-64 mx-auto bg-white rounded-lg border-2 border-dashed border-purple-300 flex flex-col items-center justify-center">
                   <QrCode className="w-16 h-16 text-purple-400 mb-4" />
                   <p className="text-purple-600 font-medium">Area Scan QR Code</p>
                   <p className="text-gray-500 text-sm mt-2">Posisikan QR code di dalam frame</p>
                 </div>
-                
-                {/* Corner markers */}
                 <div className="absolute top-8 left-8 w-6 h-6 border-t-2 border-l-2 border-purple-500 rounded-tl-lg"></div>
                 <div className="absolute top-8 right-8 w-6 h-6 border-t-2 border-r-2 border-purple-500 rounded-tr-lg"></div>
                 <div className="absolute bottom-8 left-8 w-6 h-6 border-b-2 border-l-2 border-purple-500 rounded-bl-lg"></div>
                 <div className="absolute bottom-8 right-8 w-6 h-6 border-b-2 border-r-2 border-purple-500 rounded-br-lg"></div>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <Button onClick={() => toast.info("Membuka kamera...", { description: "Izinkan akses kamera untuk memindai QR." })}>
+                  <Camera className="w-4 h-4 mr-2" />
+                  Aktifkan Kamera
+                </Button>
+                <Button variant="outline" onClick={() => toast.info("Pilih gambar QR dari galeri")}>
+                  <FileText className="w-4 h-4 mr-2" />
+                  Dari Galeri
+                </Button>
               </div>
             </CardContent>
           </Card>
