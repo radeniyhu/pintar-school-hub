@@ -329,64 +329,49 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                       </CardHeader>
                       <CardContent>
                         <div className="grid grid-cols-2 gap-4">
-                          {/* Listrik */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Listrik PLN")}>
                             <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center">
                               <span className="text-yellow-600 text-xs font-bold">⚡</span>
                             </div>
                             <span className="text-sm">Listrik PLN</span>
                           </Button>
-                          
-                          {/* Air PDAM */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Air PDAM")}>
                             <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
                               <span className="text-blue-600 text-xs font-bold">💧</span>
                             </div>
                             <span className="text-sm">Air PDAM</span>
                           </Button>
-                          
-                          {/* Pulsa */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Pulsa & Data")}>
                             <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
                               <span className="text-green-600 text-xs font-bold">📱</span>
                             </div>
                             <span className="text-sm">Pulsa & Data</span>
                           </Button>
-                          
-                          {/* Internet */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Internet")}>
                             <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center">
                               <span className="text-purple-600 text-xs font-bold">🌐</span>
                             </div>
                             <span className="text-sm">Internet</span>
                           </Button>
-                          
-                          {/* TV Kabel */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("TV Kabel")}>
                             <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
                               <span className="text-red-600 text-xs font-bold">📺</span>
                             </div>
                             <span className="text-sm">TV Kabel</span>
                           </Button>
-                          
-                          {/* BPJS */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("BPJS")}>
                             <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center">
                               <span className="text-teal-600 text-xs font-bold">🏥</span>
                             </div>
                             <span className="text-sm">BPJS</span>
                           </Button>
-                          
-                          {/* Asuransi */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Asuransi")}>
                             <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center">
                               <span className="text-indigo-600 text-xs font-bold">🛡️</span>
                             </div>
                             <span className="text-sm">Asuransi</span>
                           </Button>
-                          
-                          {/* Multifinance */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Multifinance")}>
                             <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
                               <span className="text-pink-600 text-xs font-bold">🏦</span>
                             </div>
