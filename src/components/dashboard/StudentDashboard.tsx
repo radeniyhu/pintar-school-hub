@@ -416,7 +416,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                             </div>
                           </div>
                         </div>
-                        <Button variant="ghost" className="w-full mt-4">
+                        <Button variant="ghost" className="w-full mt-4" onClick={() => notify("Riwayat transaksi")}>
                           Lihat Semua Riwayat
                         </Button>
                       </CardContent>
