@@ -794,7 +794,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
-      <Header onLogout={onLogout} />
+      <Header onLogout={onLogout} onNavigate={setActiveTab} />
 
       {/* Main Content */}
       <main className="p-4 lg:p-6">
