@@ -11,23 +11,33 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { Bell, User, Settings, LogOut, School } from 'lucide-react';
+import { toast } from "sonner";
 
 interface HeaderProps {
   userRole?: string;
   userName?: string;
   userEmail?: string;
   onLogout: () => void;
+  onNavigate?: (tab: string) => void;
 }
 
-const Header = ({ userRole = "siswa", userName = "Ahmad Fauzi", userEmail = "ahmad@student.com", onLogout }: HeaderProps) => {
+const Header = ({ userRole = "siswa", userName = "Ahmad Fauzi", userEmail = "ahmad@student.com", onLogout, onNavigate }: HeaderProps) => {
   
   const getRoleDisplay = () => {
+    const safeName = userName?.trim() || 'Pengguna';
+    const initials = safeName.split(' ').filter(Boolean).map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'U';
     switch (userRole) {
       case 'owner': return { name: 'Super Admin', class: 'Platform Owner', avatar: 'SA' };
       case 'admin': return { name: 'Admin', class: 'Platform Admin', avatar: 'AD' };
       case 'client': return { name: 'Admin Sekolah', class: 'School Admin', avatar: 'AS' };
-      default: return { name: userName, class: 'XI IPA 2', avatar: userName.split(' ').map(n => n[0]).join('') };
+      default: return { name: safeName, class: 'XI IPA 2', avatar: initials };
     }
+  };
+
+  const handleNotifications = () => {
+    toast.info("3 notifikasi baru", {
+      description: "Tugas Matematika, Pengumuman Ujian, Tagihan SPP",
+    });
   };
   
   const roleInfo = getRoleDisplay();
