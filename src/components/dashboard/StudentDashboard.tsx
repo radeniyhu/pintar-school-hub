@@ -199,7 +199,14 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                 <div className="flex flex-col items-center gap-1 text-green-600">
                   <div className="flex items-center gap-2">
                     <Wallet className="w-5 h-5" />
-                    <Plus className="w-4 h-4 bg-green-600 text-white rounded-full p-0.5 hover:bg-green-700 cursor-pointer transition-colors" />
+                    <button
+                      type="button"
+                      onClick={() => toast.success("Top up saldo", { description: "Pilih nominal & metode pembayaran." })}
+                      aria-label="Top up saldo"
+                      className="rounded-full"
+                    >
+                      <Plus className="w-4 h-4 bg-green-600 text-white rounded-full p-0.5 hover:bg-green-700 cursor-pointer transition-colors" />
+                    </button>
                   </div>
                   <span className="text-sm font-medium">Rp. 1.500.738</span>
                 </div>
