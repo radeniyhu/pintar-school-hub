@@ -60,7 +60,7 @@ const Header = ({ userRole = "siswa", userName = "Ahmad Fauzi", userEmail = "ahm
         {/* Right side */}
         <div className="flex items-center gap-3">
           {/* Notifications */}
-          <Button variant="ghost" size="sm" className="relative">
+          <Button variant="ghost" size="sm" className="relative" onClick={handleNotifications} aria-label="Notifikasi">
             <Bell className="w-5 h-5" />
             <Badge 
               variant="destructive" 
@@ -93,11 +93,11 @@ const Header = ({ userRole = "siswa", userName = "Ahmad Fauzi", userEmail = "ahm
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onNavigate?.('profil')}>
                 <User className="mr-2 h-4 w-4" />
                 <span>Profil Saya</span>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => toast.info("Pengaturan akan segera tersedia")}>
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Pengaturan</span>
               </DropdownMenuItem>
