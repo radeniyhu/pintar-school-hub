@@ -502,7 +502,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                       </Badge>
                     </div>
                   </div>
-                  <Button className="flex items-center gap-2">
+                  <Button className="flex items-center gap-2" onClick={() => notify("Edit profil")}>
                     <FileText className="w-4 h-4" />
                     Edit Profil
                   </Button>
