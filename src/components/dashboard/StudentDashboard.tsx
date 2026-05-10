@@ -282,7 +282,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                             </div>
                             <div className="text-right">
                               <p className="font-bold text-orange-600">Rp. 150.000</p>
-                              <Button size="sm" className="mt-1">Bayar</Button>
+                              <Button size="sm" className="mt-1" onClick={() => handlePay("Biaya Ekstrakurikuler", "Rp. 150.000")}>Bayar</Button>
                             </div>
                           </div>
                         </div>
