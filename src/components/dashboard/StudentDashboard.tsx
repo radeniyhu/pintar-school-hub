@@ -664,19 +664,19 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-blue-50 hover:border-blue-300">
+                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-blue-50 hover:border-blue-300" onClick={() => notify("Edit profil")}>
                         <FileText className="w-6 h-6 text-blue-600" />
                         <span className="text-sm">Edit Profil</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-green-50 hover:border-green-300">
+                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-green-50 hover:border-green-300" onClick={() => notify("Ubah password")}>
                         <Users className="w-6 h-6 text-green-600" />
                         <span className="text-sm">Ubah Password</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-purple-50 hover:border-purple-300">
+                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-purple-50 hover:border-purple-300" onClick={() => notify("Pengaturan")}>
                         <Bell className="w-6 h-6 text-purple-600" />
                         <span className="text-sm">Pengaturan</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-orange-50 hover:border-orange-300">
+                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-orange-50 hover:border-orange-300 text-orange-600" onClick={onLogout}>
                         <LogOut className="w-6 h-6 text-orange-600" />
                         <span className="text-sm">Keluar</span>
                       </Button>
