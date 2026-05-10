@@ -44,6 +44,7 @@ import DigitalLibraryPage from './DigitalLibraryPage';
 import NewsPage from './NewsPage';
 import StudentCard from './StudentCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "sonner";
 
 interface StudentDashboardProps {
   onLogout: () => void;
@@ -51,8 +52,15 @@ interface StudentDashboardProps {
 
 const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
   const [activeTab, setActiveTab] = useState('beranda');
-  const [subTab, setSubTab] = useState('pendidikan'); // For managing sub-tabs within beranda
-  const [profileTab, setProfileTab] = useState('info'); // For managing profile tabs
+  const [subTab, setSubTab] = useState('pendidikan');
+  const [profileTab, setProfileTab] = useState('info');
+
+  const notify = (label: string) =>
+    toast.success(`${label}`, { description: "Fitur ini akan segera tersedia." });
+  const handlePay = (label: string, amount: string) =>
+    toast.success(`Membuka pembayaran: ${label}`, { description: `Total: ${amount}` });
+  const handlePPOB = (label: string) =>
+    toast.info(`Buka layanan ${label}`, { description: "Anda akan diarahkan ke form pembayaran." });
 
   const menuItems = [
     { 
@@ -191,7 +199,14 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                 <div className="flex flex-col items-center gap-1 text-green-600">
                   <div className="flex items-center gap-2">
                     <Wallet className="w-5 h-5" />
-                    <Plus className="w-4 h-4 bg-green-600 text-white rounded-full p-0.5 hover:bg-green-700 cursor-pointer transition-colors" />
+                    <button
+                      type="button"
+                      onClick={() => toast.success("Top up saldo", { description: "Pilih nominal & metode pembayaran." })}
+                      aria-label="Top up saldo"
+                      className="rounded-full"
+                    >
+                      <Plus className="w-4 h-4 bg-green-600 text-white rounded-full p-0.5 hover:bg-green-700 cursor-pointer transition-colors" />
+                    </button>
                   </div>
                   <span className="text-sm font-medium">Rp. 1.500.738</span>
                 </div>
@@ -257,7 +272,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                             </div>
                             <div className="text-right">
                               <p className="font-bold text-red-600">Rp. 450.000</p>
-                              <Button size="sm" className="mt-1">Bayar</Button>
+                              <Button size="sm" className="mt-1" onClick={() => handlePay("SPP Bulan Juni 2024", "Rp. 450.000")}>Bayar</Button>
                             </div>
                           </div>
                           <div className="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-200">
@@ -267,7 +282,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                             </div>
                             <div className="text-right">
                               <p className="font-bold text-orange-600">Rp. 150.000</p>
-                              <Button size="sm" className="mt-1">Bayar</Button>
+                              <Button size="sm" className="mt-1" onClick={() => handlePay("Biaya Ekstrakurikuler", "Rp. 150.000")}>Bayar</Button>
                             </div>
                           </div>
                         </div>
@@ -281,19 +296,19 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                       </CardHeader>
                       <CardContent>
                         <div className="grid grid-cols-2 gap-4">
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("SPP")}>
                             <GraduationCap className="w-6 h-6 text-blue-600" />
                             <span className="text-sm">SPP</span>
                           </Button>
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Buku & Seragam")}>
                             <BookOpen className="w-6 h-6 text-green-600" />
                             <span className="text-sm">Buku & Seragam</span>
                           </Button>
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Kegiatan")}>
                             <Users className="w-6 h-6 text-purple-600" />
                             <span className="text-sm">Kegiatan</span>
                           </Button>
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Ujian")}>
                             <Calendar className="w-6 h-6 text-orange-600" />
                             <span className="text-sm">Ujian</span>
                           </Button>
@@ -314,64 +329,49 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                       </CardHeader>
                       <CardContent>
                         <div className="grid grid-cols-2 gap-4">
-                          {/* Listrik */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Listrik PLN")}>
                             <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center">
                               <span className="text-yellow-600 text-xs font-bold">⚡</span>
                             </div>
                             <span className="text-sm">Listrik PLN</span>
                           </Button>
-                          
-                          {/* Air PDAM */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Air PDAM")}>
                             <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
                               <span className="text-blue-600 text-xs font-bold">💧</span>
                             </div>
                             <span className="text-sm">Air PDAM</span>
                           </Button>
-                          
-                          {/* Pulsa */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Pulsa & Data")}>
                             <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
                               <span className="text-green-600 text-xs font-bold">📱</span>
                             </div>
                             <span className="text-sm">Pulsa & Data</span>
                           </Button>
-                          
-                          {/* Internet */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Internet")}>
                             <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center">
                               <span className="text-purple-600 text-xs font-bold">🌐</span>
                             </div>
                             <span className="text-sm">Internet</span>
                           </Button>
-                          
-                          {/* TV Kabel */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("TV Kabel")}>
                             <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
                               <span className="text-red-600 text-xs font-bold">📺</span>
                             </div>
                             <span className="text-sm">TV Kabel</span>
                           </Button>
-                          
-                          {/* BPJS */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("BPJS")}>
                             <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center">
                               <span className="text-teal-600 text-xs font-bold">🏥</span>
                             </div>
                             <span className="text-sm">BPJS</span>
                           </Button>
-                          
-                          {/* Asuransi */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Asuransi")}>
                             <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center">
                               <span className="text-indigo-600 text-xs font-bold">🛡️</span>
                             </div>
                             <span className="text-sm">Asuransi</span>
                           </Button>
-                          
-                          {/* Multifinance */}
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Multifinance")}>
                             <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
                               <span className="text-pink-600 text-xs font-bold">🏦</span>
                             </div>
@@ -416,7 +416,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                             </div>
                           </div>
                         </div>
-                        <Button variant="ghost" className="w-full mt-4">
+                        <Button variant="ghost" className="w-full mt-4" onClick={() => notify("Riwayat transaksi")}>
                           Lihat Semua Riwayat
                         </Button>
                       </CardContent>
@@ -440,19 +440,31 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
       case 'menu':
         return (
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-6 space-y-4">
+              <div className="text-center">
+                <h2 className="text-lg font-semibold text-gray-900">Scan QRIS</h2>
+                <p className="text-sm text-gray-500">Bayar cepat dengan memindai kode QRIS</p>
+              </div>
               <div className="relative bg-gray-100 rounded-lg p-8 text-center">
                 <div className="w-64 h-64 mx-auto bg-white rounded-lg border-2 border-dashed border-purple-300 flex flex-col items-center justify-center">
                   <QrCode className="w-16 h-16 text-purple-400 mb-4" />
                   <p className="text-purple-600 font-medium">Area Scan QR Code</p>
                   <p className="text-gray-500 text-sm mt-2">Posisikan QR code di dalam frame</p>
                 </div>
-                
-                {/* Corner markers */}
                 <div className="absolute top-8 left-8 w-6 h-6 border-t-2 border-l-2 border-purple-500 rounded-tl-lg"></div>
                 <div className="absolute top-8 right-8 w-6 h-6 border-t-2 border-r-2 border-purple-500 rounded-tr-lg"></div>
                 <div className="absolute bottom-8 left-8 w-6 h-6 border-b-2 border-l-2 border-purple-500 rounded-bl-lg"></div>
                 <div className="absolute bottom-8 right-8 w-6 h-6 border-b-2 border-r-2 border-purple-500 rounded-br-lg"></div>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <Button onClick={() => toast.info("Membuka kamera...", { description: "Izinkan akses kamera untuk memindai QR." })}>
+                  <Camera className="w-4 h-4 mr-2" />
+                  Aktifkan Kamera
+                </Button>
+                <Button variant="outline" onClick={() => toast.info("Pilih gambar QR dari galeri")}>
+                  <FileText className="w-4 h-4 mr-2" />
+                  Dari Galeri
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -468,7 +480,12 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                     <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                       AF
                     </div>
-                    <button className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-full shadow-lg border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <button
+                      type="button"
+                      onClick={() => toast.info("Ubah foto profil", { description: "Pilih foto baru dari perangkat Anda." })}
+                      aria-label="Ubah foto profil"
+                      className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-full shadow-lg border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                    >
                       <Camera className="w-4 h-4 text-gray-600" />
                     </button>
                   </div>
@@ -485,7 +502,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                       </Badge>
                     </div>
                   </div>
-                  <Button className="flex items-center gap-2">
+                  <Button className="flex items-center gap-2" onClick={() => notify("Edit profil")}>
                     <FileText className="w-4 h-4" />
                     Edit Profil
                   </Button>
@@ -647,19 +664,19 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-blue-50 hover:border-blue-300">
+                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-blue-50 hover:border-blue-300" onClick={() => notify("Edit profil")}>
                         <FileText className="w-6 h-6 text-blue-600" />
                         <span className="text-sm">Edit Profil</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-green-50 hover:border-green-300">
+                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-green-50 hover:border-green-300" onClick={() => notify("Ubah password")}>
                         <Users className="w-6 h-6 text-green-600" />
                         <span className="text-sm">Ubah Password</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-purple-50 hover:border-purple-300">
+                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-purple-50 hover:border-purple-300" onClick={() => notify("Pengaturan")}>
                         <Bell className="w-6 h-6 text-purple-600" />
                         <span className="text-sm">Pengaturan</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-orange-50 hover:border-orange-300">
+                      <Button variant="outline" className="h-20 flex flex-col gap-2 hover:bg-orange-50 hover:border-orange-300 text-orange-600" onClick={onLogout}>
                         <LogOut className="w-6 h-6 text-orange-600" />
                         <span className="text-sm">Keluar</span>
                       </Button>
@@ -777,7 +794,7 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
-      <Header onLogout={onLogout} />
+      <Header onLogout={onLogout} onNavigate={setActiveTab} />
 
       {/* Main Content */}
       <main className="p-4 lg:p-6">

@@ -1,5 +1,5 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { LucideIcon } from 'lucide-react';
 
@@ -21,9 +21,7 @@ interface QuickAccessMenuProps {
 const QuickAccessMenu = ({ menuItems, onMenuClick }: QuickAccessMenuProps) => {
   return (
     <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-gray-50">
-      <CardHeader className="pb-4">
-      </CardHeader>
-      <CardContent>
+      <CardContent className="pt-6">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {menuItems.map((item) => {
             const Icon = item.icon;

@@ -2,8 +2,30 @@ import { QrCode, Download, Share2, GraduationCap, ShieldCheck, Calendar, MapPin,
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { toast } from "sonner";
 
 const StudentCard = () => {
+  const handleDownload = () => {
+    toast.success("Mengunduh kartu pelajar...", { description: "File akan tersimpan di perangkat Anda." });
+  };
+  const handleShare = async () => {
+    const shareData = {
+      title: "Kartu Pelajar — Ahmad Fauzi",
+      text: "Kartu Pelajar Digital SMA Negeri 1 Jakarta",
+      url: typeof window !== "undefined" ? window.location.href : "",
+    };
+    try {
+      if (typeof navigator !== "undefined" && (navigator as any).share) {
+        await (navigator as any).share(shareData);
+        toast.success("Berhasil dibagikan");
+      } else {
+        await navigator.clipboard?.writeText(shareData.url);
+        toast.success("Tautan disalin ke clipboard");
+      }
+    } catch {
+      toast.error("Gagal membagikan kartu");
+    }
+  };
   return (
     <div className="max-w-md mx-auto space-y-4">
       {/* Card */}
@@ -139,11 +161,11 @@ const StudentCard = () => {
 
       {/* Action buttons */}
       <div className="grid grid-cols-2 gap-2">
-        <Button variant="outline" className="w-full">
+        <Button variant="outline" className="w-full" onClick={handleDownload}>
           <Download className="w-4 h-4 mr-2" />
           Unduh Kartu
         </Button>
-        <Button className="w-full">
+        <Button className="w-full" onClick={handleShare}>
           <Share2 className="w-4 h-4 mr-2" />
           Bagikan
         </Button>
