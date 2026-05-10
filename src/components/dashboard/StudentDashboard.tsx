@@ -44,6 +44,7 @@ import DigitalLibraryPage from './DigitalLibraryPage';
 import NewsPage from './NewsPage';
 import StudentCard from './StudentCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "sonner";
 
 interface StudentDashboardProps {
   onLogout: () => void;
@@ -51,8 +52,15 @@ interface StudentDashboardProps {
 
 const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
   const [activeTab, setActiveTab] = useState('beranda');
-  const [subTab, setSubTab] = useState('pendidikan'); // For managing sub-tabs within beranda
-  const [profileTab, setProfileTab] = useState('info'); // For managing profile tabs
+  const [subTab, setSubTab] = useState('pendidikan');
+  const [profileTab, setProfileTab] = useState('info');
+
+  const notify = (label: string) =>
+    toast.success(`${label}`, { description: "Fitur ini akan segera tersedia." });
+  const handlePay = (label: string, amount: string) =>
+    toast.success(`Membuka pembayaran: ${label}`, { description: `Total: ${amount}` });
+  const handlePPOB = (label: string) =>
+    toast.info(`Buka layanan ${label}`, { description: "Anda akan diarahkan ke form pembayaran." });
 
   const menuItems = [
     { 
