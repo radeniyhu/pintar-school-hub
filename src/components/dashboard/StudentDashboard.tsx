@@ -296,19 +296,19 @@ const StudentDashboard = ({ onLogout }: StudentDashboardProps) => {
                       </CardHeader>
                       <CardContent>
                         <div className="grid grid-cols-2 gap-4">
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("SPP")}>
                             <GraduationCap className="w-6 h-6 text-blue-600" />
                             <span className="text-sm">SPP</span>
                           </Button>
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Buku & Seragam")}>
                             <BookOpen className="w-6 h-6 text-green-600" />
                             <span className="text-sm">Buku & Seragam</span>
                           </Button>
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Kegiatan")}>
                             <Users className="w-6 h-6 text-purple-600" />
                             <span className="text-sm">Kegiatan</span>
                           </Button>
-                          <Button variant="outline" className="h-20 flex flex-col gap-2">
+                          <Button variant="outline" className="h-20 flex flex-col gap-2" onClick={() => handlePPOB("Ujian")}>
                             <Calendar className="w-6 h-6 text-orange-600" />
                             <span className="text-sm">Ujian</span>
                           </Button>
