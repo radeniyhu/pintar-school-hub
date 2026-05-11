@@ -259,11 +259,11 @@ const GradesPage = () => {
 
       {/* Main Content */}
       <Tabs defaultValue="grades" className="space-y-4 lg:space-y-6">
-        <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 gap-1">
-          <TabsTrigger value="grades" className="text-xs lg:text-sm">Nilai</TabsTrigger>
-          <TabsTrigger value="reports" className="text-xs lg:text-sm">Rapor</TabsTrigger>
-          <TabsTrigger value="progress" className="text-xs lg:text-sm">Progress</TabsTrigger>
-          <TabsTrigger value="achievements" className="text-xs lg:text-sm">Prestasi</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 gap-1.5 h-auto p-1.5">
+          <TabsTrigger value="grades" className="text-xs lg:text-sm py-2">Nilai</TabsTrigger>
+          <TabsTrigger value="reports" className="text-xs lg:text-sm py-2">Rapor</TabsTrigger>
+          <TabsTrigger value="progress" className="text-xs lg:text-sm py-2">Progress</TabsTrigger>
+          <TabsTrigger value="achievements" className="text-xs lg:text-sm py-2">Prestasi</TabsTrigger>
         </TabsList>
 
         {/* Grades Tab */}
